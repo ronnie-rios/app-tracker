@@ -6,7 +6,7 @@ const ApplicationProgress = require('../models/ApplicationProgress');
 };
 
 const getSingleApp = async (req, res) => {
-    const id = req.params._id
+    const id = req.params.id
     const singleApp = await ApplicationProgress.findById(id);
     if(!singleApp) {
         res.status(404).json({ err: 'not found'})
@@ -25,8 +25,18 @@ const postApp = async (req, res) => {
     }
 }
 
+const putApp = async (req, res) => {
+    try {
+        const updateApp = await ApplicationProgress.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        return res.json(updateApp)
+    } catch (error) {
+        res.json(error)
+    }
+}
+
 module.exports = {
     getAllApps,
     getSingleApp,
-    postApp
+    postApp,
+    putApp
 }
