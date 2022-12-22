@@ -9,25 +9,24 @@ export const DisplayAll = () => {
         const response = await fetch(URL);
         const data = await response.json();
         setAppsData(data);
+        console.log(data)
     }
     useEffect(()=> {
         getAllApps()
-    }, [appsData]);
+    }, []);
 
-    const renderContent = () => {
-        appsData.map((app) => {
-            return (
-                <div key={app._id}>
-                    <h3>role: {app.jobRole}</h3>
-                    <h3>Company: {app.company}</h3>
-                    <h4>technologies: {app.technologies}</h4>
-                </div>
-            )
-        })
+    const renderContent = (app) => {
+        return (
+            <div key={app._id}>
+                <h3>role: {app.jobRole}</h3>
+                <h3>Company: {app.company}</h3>
+                <h4>technologies: {app.technologies}</h4>
+            </div>
+        )
     }
   return (
     <>
-        {renderContent()}
+        {appsData.map((app) => renderContent(app))}
     </>
   )
 }
