@@ -4,6 +4,7 @@ const ApplicationProgressSchema = new mongoose.Schema({
     jobRole: String,
     company: String,
     technologies: String,
+    fromWhere: String,
     interview: Boolean,
     phoneScreening: Boolean,
     accepted: Boolean
