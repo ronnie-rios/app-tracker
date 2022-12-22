@@ -1,8 +1,11 @@
 import React from 'react'
+import { DisplayAll } from './DisplayAll'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div>
+        <DisplayAll />
+    </div>
   )
 }
 
