@@ -7,7 +7,8 @@ const ApplicationProgressSchema = new mongoose.Schema({
     fromWhere: String,
     interview: Boolean,
     phoneScreening: Boolean,
-    accepted: Boolean
+    accepted: Boolean,
+    denied: Boolean
 }, { timestamps: true });
 
 const ApplicationProgress = mongoose.model('ApplicationProgress', ApplicationProgressSchema);

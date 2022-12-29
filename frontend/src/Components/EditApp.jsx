@@ -4,7 +4,8 @@ export const EditApp = ({ appData }) => {
   const [editForm, setEditForm] = useState({
     interview: false,
     phoneScreening: false,
-    accepted: false
+    accepted: false,
+    denied: false
   })
 
 
