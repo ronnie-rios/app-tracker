@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { EditApp } from './EditApp';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const URL = 'http://localhost:7001/applications'
+const URL = 'http://localhost:7001/applications';
+
 export const DisplayAll = () => {
     const [appsData, setAppsData] = useState([]);
-    const [edit, setEdit] = useState(false)
+    const navigate = useNavigate()
 
     const getAllApps = async () => {
         const response = await fetch(URL);
@@ -22,8 +22,8 @@ export const DisplayAll = () => {
                 <h3>role: {app.jobRole}</h3>
                 <h3>Company: {app.company}</h3>
                 <h4>technologies: {app.technologies}</h4>
-                <button onClick={()=>setEdit(true)}>edit?</button>
-                {edit && <EditApp appData={appsData}/>}
+                <button onClick={()=> navigate(`/${app._id}`)}>more details</button>
+                
             </div>
         )
     }
