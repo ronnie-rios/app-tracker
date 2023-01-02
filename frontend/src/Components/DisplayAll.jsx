@@ -23,14 +23,13 @@ export const DisplayAll = () => {
                 <h3>Company: {app.company}</h3>
                 <h4>technologies: {app.technologies}</h4>
                 <button onClick={()=> navigate(`/${app._id}`)}>more details</button>
-                
             </div>
         )
     }
-  return (
-    <>
-        {appsData.map((app) => renderContent(app))}
-       
-    </>
-  )
+
+    return (
+        <>
+            {appsData.map((app) => renderContent(app))}
+        </>
+    )
 }

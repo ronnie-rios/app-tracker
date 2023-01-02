@@ -14,8 +14,19 @@ const SingleApp = () => {
         getSingleApp()
     }, []);
 
+    
+
   return (
-    <div>SingleApp</div>
+    <div>
+        <h4>{singleAppData.jobRole}</h4>
+        <h4>{singleAppData.company}</h4>
+        <h4>{singleAppData.technologies}</h4>
+        <h4>{singleAppData.fromWhere}</h4>
+        <h4>{singleAppData.interview}</h4>
+        <h4>{singleAppData.phoneScreening}</h4>
+        <h4>{singleAppData.accepted}</h4>
+        <h4>{singleAppData.denied}</h4>
+    </div>
   )
 }
 
