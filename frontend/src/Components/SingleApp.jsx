@@ -3,7 +3,12 @@ import { useParams } from 'react-router-dom';
 
 const SingleApp = () => {
     const [singleAppData, setSingleAppData] = useState([]);
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+      interview: false,
+      phoneScreening: false,
+      accepted: false,
+      denied: false
+    });
     const id = useParams().id
   
     const getSingleApp = async () => {
@@ -31,32 +36,45 @@ const SingleApp = () => {
         }
       }
 
-      const formHandler = (e) => {
+      const handleCheckbox = (e) => {
         const name = e.target.name;
-        const value = e.target.value;
-        setFormData((prev)=>{
-          return { ...prev, [name]: value}
-        })
+      
+        if (e.target.checked) {
+          setFormData((prev)=>{
+            return { ...prev, [name]: true}
+          })
+        } else {
+          setFormData((prev)=>{
+            return { ...prev, [name]: false}
+          })
+        }
       }
     
       const formSubmit = (e) => {
         e.preventDefault();
         editData();
       }
+      
   return (
     <>
         <div>
-            <h4>{singleAppData.jobRole}</h4>
-            <h4>{singleAppData.company}</h4>
-            <h4>{singleAppData.technologies}</h4>
-            <h4>{singleAppData.fromWhere}</h4>
-            <h4>{singleAppData.interview}</h4>
-            <h4>{singleAppData.phoneScreening}</h4>
-            <h4>{singleAppData.accepted}</h4>
-            <h4>{singleAppData.denied}</h4>
+          <h3>Job info</h3>
+          <h4>Role: {singleAppData.jobRole}</h4>
+          <h4>Company: {singleAppData.company}</h4>
+          <h4>Tech Stack: {singleAppData.technologies}</h4>
+          <h4>How'd you hear about this job? {singleAppData.fromWhere}</h4>
+          <h3>Job status</h3>
+          <h4>Got an interview - {singleAppData.interview && singleAppData.interview.toString()}</h4>
+          <h4>Got a phone call - {singleAppData.interview && singleAppData.phoneScreening.toString()}</h4>
+          <h4>accepted - {singleAppData.interview && singleAppData.accepted.toString()}</h4>
+          <h4>denied / no follow up {singleAppData.interview && singleAppData.denied.toString()}</h4>
         </div>
-        <form>
-
+        <form onChange={handleCheckbox} onSubmit={formSubmit}>
+          Interview <input type='checkbox' name='interview' value={false} />
+          Phone Screening <input type='checkbox' name='phoneScreening' value={false} />
+          Accepted <input type='checkbox' name='accepted'value={true} />
+          Denied / Didn't hear back <input type='checkbox' name='denied' value={false}/>
+          <button>submit</button>
         </form>
     </>
   )
