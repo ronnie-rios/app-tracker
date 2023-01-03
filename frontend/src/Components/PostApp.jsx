@@ -7,7 +7,7 @@ export const PostApp = () => {
   const formHandler = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setFormData((prev)=>{
+    setFormData((prev) => {
       return { ...prev, [name]: value}
     })
   }
