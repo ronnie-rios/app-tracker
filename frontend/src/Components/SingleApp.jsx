@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const SingleApp = () => {
     const [singleAppData, setSingleAppData] = useState([]);
@@ -9,7 +9,8 @@ const SingleApp = () => {
       accepted: false,
       denied: false
     });
-    const id = useParams().id
+    const id = useParams().id;
+    const navigate = useNavigate()
   
     const getSingleApp = async () => {
         const response = await fetch(`http://localhost:7001/applications/${id}`);
@@ -53,8 +54,9 @@ const SingleApp = () => {
       const formSubmit = (e) => {
         e.preventDefault();
         editData();
+        navigate(`/`)
       }
-      
+
   return (
     <>
         <div>
