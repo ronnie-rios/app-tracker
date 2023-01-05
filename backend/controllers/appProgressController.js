@@ -33,10 +33,19 @@ const putApp = async (req, res) => {
         res.json(error)
     }
 }
+const deleteApp = async (req, res) => {
+    try {
+        const removeApp = await ApplicationProgress.findByIdAndDelete(req.params.id);
+        return res.json(removeApp)
+    } catch (error) {
+        res.json(error)
+    }
+}
 
 module.exports = {
     getAllApps,
     getSingleApp,
     postApp,
-    putApp
+    putApp,
+    deleteApp
 }
