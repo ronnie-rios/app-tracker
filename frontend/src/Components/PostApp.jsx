@@ -1,7 +1,7 @@
 import { useState } from 'react';
 const URL = 'http://localhost:7001/applications';
 
-export const PostApp = () => {
+export const PostApp = ({ toggleRender, setToggleRender }) => {
   const [formData, setFormData] = useState({});
 
   const formHandler = (e) => {
@@ -16,6 +16,7 @@ export const PostApp = () => {
     e.preventDefault();
     postData();
   }
+  
   const postData = async () => {
     try {
       const response = await fetch(URL, {
@@ -25,6 +26,7 @@ export const PostApp = () => {
         method: 'POST',
         body: JSON.stringify(formData)
       });
+      setToggleRender(!toggleRender)
       const data = response.json();
       return data;
     } catch (error) {
