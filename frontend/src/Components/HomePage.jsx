@@ -6,7 +6,7 @@ const HomePage = () => {
   const [toggleRender, setToggleRender] = useState(false)
 
   return (
-    <div>
+    <div className='flex'>
         <PostApp toggleRender={toggleRender} setToggleRender={setToggleRender}/>
         <DisplayAll toggleRender={toggleRender} setToggleRender={setToggleRender}/>
     </div>
