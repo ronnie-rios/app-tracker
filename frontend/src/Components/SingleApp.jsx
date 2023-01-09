@@ -66,10 +66,10 @@ const SingleApp = () => {
           <h4>Tech Stack: {singleAppData.technologies}</h4>
           <h4>How'd you hear about this job? {singleAppData.fromWhere}</h4>
           <h3>Job status</h3>
-          <h4>Got an interview - {singleAppData.interview && singleAppData.interview.toString()}</h4>
-          <h4>Got a phone call - {singleAppData.interview && singleAppData.phoneScreening.toString()}</h4>
-          <h4>accepted - {singleAppData.interview && singleAppData.accepted.toString()}</h4>
-          <h4>denied / no follow up {singleAppData.interview && singleAppData.denied.toString()}</h4>
+          <p>Interview: {singleAppData.interview === true ? 'yes' : 'no'} </p>
+          <p>Phone Call: {singleAppData.phoneScreening === true ? 'yes' : 'no'} </p>
+          <p>Accepted: {singleAppData.accepted === true ? 'yes' : 'no'}  </p>
+          <p>Denied: {singleAppData.denied === true ? 'yes' : 'no'} </p> 
         </div>
         <form onChange={handleCheckbox} onSubmit={formSubmit}>
           Interview <input type='checkbox' name='interview' value={false} />
