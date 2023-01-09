@@ -42,6 +42,7 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
             className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' 
             type='text'
             name='jobRole'
+            required
           />
         </div>
         <div className="mb-6">
@@ -50,6 +51,7 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
             className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' 
             type='text'
             name='company'
+            required
             />
         </div>
         <div className="mb-6">
@@ -58,6 +60,14 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
             className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' 
             type='text'
             name='technologies'
+          />
+        </div>
+        <div className="mb-6">
+          <label className='block text-sm font-bold mb-2'>Date Submitted:</label>
+          <input 
+            className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' 
+            type='date'
+            name='dateSubmitted'
           />
         </div>
         <button className='py-2 px-4 rounded bg-blue-800 font-bold text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline'>Submit!</button>
