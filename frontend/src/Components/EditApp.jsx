@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-export const EditApp = ({ appData }) => {
+
+export const EditApp = ({ appData, viewMore, setViewMore}) => {
   const [formData, setFormData] = useState({
     interview: false,
     phoneScreening: false,
