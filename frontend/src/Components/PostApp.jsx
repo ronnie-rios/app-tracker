@@ -35,8 +35,7 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
   }
 
   return (
-    <div className='w-full max-w-xs'>
-      <form className='shadow-md roundex px-8 pt=6 pb-8 mb-4' onChange={formHandler} onSubmit={formSubmit}>
+      <form className='' onChange={formHandler} onSubmit={formSubmit}>
         <div className="mb-4">
           <label className='block text-sm font-bold mb-2'>Enter the role:</label>
           <input
@@ -63,7 +62,6 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
         </div>
         <button className='py-2 px-4 rounded bg-blue-800 font-bold text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline'>Submit!</button>
       </form>
-      </div>
   )
 }
 

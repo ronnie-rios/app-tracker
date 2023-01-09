@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { EditApp } from './EditApp';
 
 const URL = 'http://localhost:7001/applications';
 
 export const DisplayAll = ({ toggleRender, setToggleRender}) => {
     const [appsData, setAppsData] = useState([]);
-    const [viewMore, setViewMore] = useState(false);
     const navigate = useNavigate();
 
     const getAllApps = async () => {
@@ -29,12 +27,12 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
         } catch (error) {
           console.log(error)
         }
-      }
+    }
 
     useEffect(()=> {
         getAllApps()
     }, [toggleRender]);
-    
+
     const renderProgress = (app) => {
       if(app.interview === true) {
         return (
@@ -65,11 +63,11 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{app.company}</td>
                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{app.technologies}</td>
                 {renderProgress(app)}
-                <td>
-                  <button onClick={()=> navigate(`/${app._id}`)}>edit details</button>  
+                <td className="py-4 px-6">
+                  <button className='bg-green-600 rounded px-3 py-1 text-white hover:bg-green-800' onClick={()=> navigate(`/${app._id}`)}>edit</button>  
                 </td>
-                <td>
-                  <button onClick={()=> deleteData(app._id)}>delete entry</button>
+                <td className="py-4 px-6">
+                  <button className='bg-red-600 rounded px-3 py-1 text-white hover:bg-red-800' onClick={()=> deleteData(app._id)}>delete</button>
                 </td>
             </tbody>
         )
