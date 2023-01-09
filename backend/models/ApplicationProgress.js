@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const ApplicationProgressSchema = new mongoose.Schema({
+    dateSubmitted: Date,
     jobRole: String,
     company: String,
     technologies: String,

@@ -36,15 +36,15 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
     const renderProgress = (app) => {
       if(app.interview === true) {
         return (
-          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">Interview stage</td>
+          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">Interview Stage</td>
         )
       } else if (app.phoneScreening === true) {
         return (
-          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">phone screening</td>
+          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">Phone Screening</td>
         ) 
       } else if (app.accepted === true) {
         return (
-          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">accepted!</td>
+          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">Accepted!</td>
         ) 
       } else if (app.denied ===true) {
         return (
@@ -52,7 +52,7 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
         ) 
       } else {
         return (
-          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">waiting to hear back</td>
+          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">Submitted</td>
         ) 
       }
     }
