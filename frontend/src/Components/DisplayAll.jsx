@@ -6,9 +6,9 @@ const URL = 'http://localhost:7001/applications';
 
 export const DisplayAll = ({ toggleRender, setToggleRender}) => {
     const [appsData, setAppsData] = useState([]);
-    const [viewModal, setViewModal] = useState(false);
     const [viewMore, setViewMore] = useState(false);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
     const getAllApps = async () => {
         const response = await fetch(URL);
         const data = await response.json();
@@ -34,33 +34,86 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
     useEffect(()=> {
         getAllApps()
     }, [toggleRender]);
-
+    
+    const renderProgress = (app) => {
+      if(app.interview === true) {
+        return (
+          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">Interview stage</td>
+        )
+      } else if (app.phoneScreening === true) {
+        return (
+          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">phone screening</td>
+        ) 
+      } else if (app.accepted === true) {
+        return (
+          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">accepted!</td>
+        ) 
+      } else if (app.denied ===true) {
+        return (
+          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">Denied</td>
+        ) 
+      } else {
+        return (
+          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">waiting to hear back</td>
+        ) 
+      }
+    }
     const renderContent = (app) => {
         return (
-            <div key={app._id} className='border-2 border-blue-500"'>
-                <button onClick={()=> deleteData(app._id)}>delete entry</button>
-                <h3>role: {app.jobRole}</h3>
-                <h3>Company: {app.company}</h3>
-                <h4>technologies: {app.technologies}</h4>
-                <button onClick={()=> setViewMore(true)}>view more details</button>
-                {viewMore && 
-                <>
-                    <p>Interview: {app.interview === true ? 'yes' : 'no'} </p>
-                    <p>Phone Call: {app.phoneScreening === true ? 'yes' : 'no'} </p>
-                    <p>Accepted: {app.accepted === true ? 'yes' : 'no'}  </p>
-                    <p>Denied: {app.denied === true ? 'yes' : 'no'} </p> 
-                    <button onClick={()=> setViewMore(false)}>close</button>
-                </>
-                }
-                <button onClick={()=> navigate(`/${app._id}`)}>edit details</button>
-                {/* {viewModal && <EditApp appData={app} viewModal={viewModal} setViewModal={setViewModal}/>} */}
-            </div>
+            <tbody key={app._id}>
+                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{app.jobRole}</td>
+                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{app.company}</td>
+                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{app.technologies}</td>
+                {renderProgress(app)}
+                <td>
+                  <button onClick={()=> navigate(`/${app._id}`)}>edit details</button>  
+                </td>
+                <td>
+                  <button onClick={()=> deleteData(app._id)}>delete entry</button>
+                </td>
+            </tbody>
         )
     }
     
     return (
-        <>
-            {appsData.map((app) => renderContent(app))}
-        </>
+          <div className='max-w-4xl mx-auto'>
+            <div className="flex flex-col">
+              <div className="overflow-x-auto shadow-md sm:rounded-lg">
+              <div className='inline-block min-w-full align-middle"'>
+                <div className='overflow-hidden'>
+                  <table className='min-w-full divide-y divide-gray-200 table-fixed'>
+                  <thead className='bg-gray-100 dark:bg-gray-700'>
+                    <tr>
+                      <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                        Job Role:
+                      </th>
+                      <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                        Company
+                      </th>
+                      <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                        Technologies Used
+                      </th>
+                      <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                        progress
+                      </th>
+                      <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                        Edit
+                      </th>
+                      <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                        Delete
+                      </th>
+                    </tr>
+                  </thead>
+                  {appsData.map((app) => renderContent(app))}
+                  </table>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
     )
 }
+
+
+
+

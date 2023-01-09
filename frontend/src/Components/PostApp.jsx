@@ -63,6 +63,7 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
         </div>
         <button className='py-2 px-4 rounded bg-blue-800 font-bold text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline'>Submit!</button>
       </form>
-    </div>
+      </div>
   )
 }
+
