@@ -8,7 +8,7 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
     const [appsData, setAppsData] = useState([]);
     const [viewModal, setViewModal] = useState(false);
     const [viewMore, setViewMore] = useState(false);
-
+    const navigate = useNavigate()
     const getAllApps = async () => {
         const response = await fetch(URL);
         const data = await response.json();
@@ -52,8 +52,8 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
                     <button onClick={()=> setViewMore(false)}>close</button>
                 </>
                 }
-                <button onClick={()=> setViewModal(true)}>edit details</button>
-                {viewModal && <EditApp appData={app} viewModal={viewModal} setViewModal={setViewModal}/>}
+                <button onClick={()=> navigate(`/${app._id}`)}>edit details</button>
+                {/* {viewModal && <EditApp appData={app} viewModal={viewModal} setViewModal={setViewModal}/>} */}
             </div>
         )
     }
