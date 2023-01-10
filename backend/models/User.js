@@ -14,8 +14,10 @@ const userSchema = new mongoose.Schema({
     hashedPassword: {
         type: String,
         required: true,
-        token: String
-    }}, { timestamps: true });
+        
+    },
+    token: String
+}, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);
 
