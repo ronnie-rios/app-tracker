@@ -6,7 +6,7 @@ const { getAllApps, postApp, putApp, getSingleApp, deleteApp } = require('../con
 const requiredToken = passport.authenticate('bearer', { session: false });
 
 
-router.get('/', (req, res) => {
+router.get('/', requiredToken, (req, res) => {
     getAllApps(req, res)
 });
 
@@ -14,7 +14,7 @@ router.get('/:id', (req, res) => {
     getSingleApp(req, res)
 });
 
-router.post('/', (req, res) => {
+router.post('/', requiredToken, (req, res) => {
     postApp(req, res)
 });
 

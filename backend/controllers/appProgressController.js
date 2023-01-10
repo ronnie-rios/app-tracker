@@ -15,8 +15,9 @@ const getSingleApp = async (req, res) => {
 }
 
 const postApp = async (req, res) => {
+    console.log(req.body);
     const newApp = await ApplicationProgress.create(req.body);
-    newApp.owner = req.user._id
+    // newApp.owner = req.user._id
     if (!req.body.jobRole || !req.body.company) {
         return res.json({
             err: 'please enter at the role and company'
