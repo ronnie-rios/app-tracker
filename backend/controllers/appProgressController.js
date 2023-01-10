@@ -1,7 +1,7 @@
 const ApplicationProgress = require('../models/ApplicationProgress');
 
  const getAllApps = async (req, res) => {
-    const apps = await ApplicationProgress.find();
+    const apps = await ApplicationProgress.find({ owner: req.user._id });
     return res.json(apps);
 };
 
@@ -16,6 +16,7 @@ const getSingleApp = async (req, res) => {
 
 const postApp = async (req, res) => {
     const newApp = await ApplicationProgress.create(req.body);
+    newApp.owner = req.user._id
     if (!req.body.jobRole || !req.body.company) {
         return res.json({
             err: 'please enter at the role and company'

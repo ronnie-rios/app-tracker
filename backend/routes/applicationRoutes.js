@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 const { getAllApps, postApp, putApp, getSingleApp, deleteApp } = require('../controllers/appProgressController');
+
+const requiredToken = passport.authenticate('bearer', { session: false });
+
 
 router.get('/', (req, res) => {
     getAllApps(req, res)
