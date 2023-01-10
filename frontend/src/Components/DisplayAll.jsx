@@ -59,18 +59,18 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
 
     const renderContent = (app) => {
       const date = new Date(app.dateSubmitted)
-      console.log(date);
+   
         return (
             <tbody key={app._id}>
-                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{app.dateSubmitted === 'Invalid Date' ? 'missing date' :date.toLocaleDateString()}</td>
-                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{app.jobRole}</td>
-                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{app.company}</td>
-                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{app.technologies}</td>
+                <td className="py-4 px-4 text-sm font-medium text-gray-900 whitespace-nowrap">{app.dateSubmitted === 'Invalid Date' ? 'missing date' :date.toLocaleDateString()}</td>
+                <td className="py-4 px-4 text-sm font-medium text-gray-900 whitespace-nowrap">{app.jobRole}</td>
+                <td className="py-4 px-4 text-sm font-medium text-gray-900 whitespace-nowrap">{app.company}</td>
+                <td className="py-4 px-4 text-sm font-medium text-gray-900 whitespace-nowrap">{app.technologies}</td>
                 {renderProgress(app)}
-                <td className="py-4 px-6">
+                <td className="py-4 px-4">
                   <button className='bg-green-600 rounded px-3 py-1 text-white hover:bg-green-800' onClick={()=> navigate(`/${app._id}`)}>edit</button>  
                 </td>
-                <td className="py-4 px-6">
+                <td className="py-4 px-4">
                   <button className='bg-red-600 rounded px-3 py-1 text-white hover:bg-red-800' onClick={()=> deleteData(app._id)}>delete</button>
                 </td>
             </tbody>
@@ -78,12 +78,12 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
     }
     
     return (
-          <div className='max-w-4xl mx-auto'>
+          <div className='max-w-6xl mx-auto'>
             <div className="flex flex-col">
               <div className="overflow-x-auto shadow-md sm:rounded-lg">
               <div className='inline-block min-w-full align-middle"'>
                 <div className='overflow-hidden'>
-                  <table className='min-w-full divide-y divide-gray-200 table-fixed'>
+                  <table className='min-w-full divide-y divide-gray-600 table-fixed lg:table-auto md:table-auto sm:table-auto'>
                   <thead className='bg-gray-100 dark:bg-gray-700'>
                     <tr>
                       <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
