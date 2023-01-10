@@ -56,9 +56,13 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
         ) 
       }
     }
+
     const renderContent = (app) => {
+      const date = new Date(app.dateSubmitted)
+      console.log(date);
         return (
             <tbody key={app._id}>
+                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{app.dateSubmitted === 'Invalid Date' ? 'missing date' :date.toLocaleDateString()}</td>
                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{app.jobRole}</td>
                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{app.company}</td>
                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{app.technologies}</td>
@@ -83,7 +87,10 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
                   <thead className='bg-gray-100 dark:bg-gray-700'>
                     <tr>
                       <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                        Job Role:
+                        Date Submitted
+                      </th>
+                      <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                        Job Role
                       </th>
                       <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                         Company
@@ -92,7 +99,7 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
                         Technologies Used
                       </th>
                       <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                        progress
+                        Progress
                       </th>
                       <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                         Edit
