@@ -59,13 +59,12 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.delete('/logout', (req, res) => {
-     // req.user.token = crypto.randomBytes(16)
+router.delete('/logout', requiredToken, (req, res) => {
     req.user.token = null
     req.user.save()
         // do not send new token back to client
         .then(() => res.sendStatus(204))
-        .catch(next)
+        .catch((err)=> res.json(err))
 });
 
 module.exports = router;
