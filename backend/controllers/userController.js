@@ -36,6 +36,7 @@ router.post('/signup', async (req, res) => {
         return res.status(500).json({ error: 'error posting'})
     }
 });
+
 router.post('/login', async (req, res) => {
     const password = req.body.password;
     const email = req.body.email;
@@ -56,6 +57,15 @@ router.post('/login', async (req, res) => {
     } catch (error) {
         
     }
+});
+
+router.delete('/logout', (req, res) => {
+     // req.user.token = crypto.randomBytes(16)
+    req.user.token = null
+    req.user.save()
+        // do not send new token back to client
+        .then(() => res.sendStatus(204))
+        .catch(next)
 });
 
 module.exports = router;
