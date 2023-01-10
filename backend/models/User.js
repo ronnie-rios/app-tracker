@@ -17,6 +17,6 @@ const userSchema = new mongoose.Schema({
         token: String
     }}, { timestamps: true });
 
-const User = mongoose.moodel('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

@@ -1,5 +1,5 @@
 //imports
-require('dotenv').config()
+
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -15,7 +15,10 @@ mongoose.connect('mongodb://localhost/apptracker');
 
 //routes
 const applicationsRoutes = require('./routes/applicationRoutes');
-app.use('/applications', applicationsRoutes)
+app.use('/applications', applicationsRoutes);
+
+const userRoutes = require('./controllers/userController');
+app.use('/users', userRoutes)
 //Express Listener
 const listener = () => {
     console.log(`server on ${port}`);
