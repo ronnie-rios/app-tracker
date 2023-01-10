@@ -33,7 +33,28 @@ router.post('/signup', async (req, res) => {
             return res.json(newUser)
         }
     } catch (error) {
-        return res.json(error)
+        return res.status(500).json({ error: 'error posting'})
+    }
+});
+router.post('/login', async (req, res) => {
+    const password = req.body.password;
+    const email = req.body.email;
+    try {     
+        const foundUser = await User.findOne({ email })
+        if(foundUser === null) {
+            return res.status(404).json({ err: 'user not found' })
+        }
+        const bcryptCompare = await bcrypt.compare(password, foundUser.hashedPassword);
+        if(bcryptCompare) {
+            const token = crypto.randomBytes(8).toString('hex');
+            foundUser.token = token
+            foundUser.save()
+            res.json(foundUser)
+        } else {
+            return res.status(400).json({ error: 'invalid pw'})
+        }
+    } catch (error) {
+        
     }
 });
 
