@@ -61,7 +61,7 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
       const date = new Date(app.dateSubmitted)
    
         return (
-            <tbody key={app._id}>
+            <tbody key={app._id} className='bg-white rounded-md'>
                 <td className="py-4 px-4 text-sm font-medium text-gray-900 whitespace-nowrap">{app.dateSubmitted === 'Invalid Date' ? 'missing date' :date.toLocaleDateString()}</td>
                 <td className="py-4 px-4 text-sm font-medium text-gray-900 whitespace-nowrap">{app.jobRole}</td>
                 <td className="py-4 px-4 text-sm font-medium text-gray-900 whitespace-nowrap">{app.company}</td>
