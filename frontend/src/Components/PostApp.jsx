@@ -39,7 +39,7 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
         <div className="mb-4">
           <label className='block text-sm font-bold mb-2'>Enter the role:</label>
           <input
-            className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' 
+            className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
             type='text'
             name='jobRole'
             required
@@ -48,7 +48,7 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
         <div className="mb-6">
           <label className='block text-sm font-bold mb-2'>Enter the company:</label>
           <input 
-            className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' 
+            className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
             type='text'
             name='company'
             required
@@ -57,7 +57,7 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
         <div className="mb-6">
           <label className='block text-sm font-bold mb-2'>Enter the technologies asked:</label>
           <input 
-            className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' 
+            className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
             type='text'
             name='technologies'
           />
@@ -65,12 +65,12 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
         <div className="mb-6">
           <label className='block text-sm font-bold mb-2'>Date Submitted:</label>
           <input 
-            className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' 
+            className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
             type='date'
             name='dateSubmitted'
           />
         </div>
-        <button className='py-2 px-4 rounded bg-blue-800 font-bold text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline'>Submit!</button>
+        <button className='py-1 px-4 rounded bg-blue-800 font-bold text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline'>Submit!</button>
       </form>
   )
 }

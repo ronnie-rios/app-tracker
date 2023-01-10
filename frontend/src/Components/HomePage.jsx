@@ -14,7 +14,7 @@ const HomePage = () => {
           {viewForm && 
             <div className='shadow-md rounded relative px-8 pt-6 pb-8 mb-4'>
               <AiOutlineCloseCircle 
-                className=' text-gray-800 hover:text-red-600 float-right'
+                className=' text-white hover:text-red-600 float-right'
                 onClick={()=> setViewForm(false)}
               />
               <PostApp toggleRender={toggleRender} setToggleRender={setToggleRender}/>
