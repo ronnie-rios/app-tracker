@@ -21,7 +21,7 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
             },
             method: 'DELETE',
           });
-            const data = response.json();
+            const data = await response.json();
             setToggleRender(!toggleRender)
             return data;
         } catch (error) {
