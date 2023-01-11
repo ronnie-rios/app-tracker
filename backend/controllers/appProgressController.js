@@ -1,5 +1,9 @@
 const ApplicationProgress = require('../models/ApplicationProgress');
 
+ const getAllAppsOwner = async (req, res) => {
+    const apps = await ApplicationProgress.find().populate('owner');
+    return res.json(apps);
+};
  const getAllApps = async (req, res) => {
     const apps = await ApplicationProgress.find({ owner: req.user._id });
     return res.json(apps);
@@ -45,6 +49,7 @@ const deleteApp = async (req, res) => {
 }
 
 module.exports = {
+    getAllAppsOwner,
     getAllApps,
     getSingleApp,
     postApp,
