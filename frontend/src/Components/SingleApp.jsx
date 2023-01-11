@@ -31,21 +31,21 @@ const SingleApp = () => {
   }, []);
 
   const editData = async () => {
-      try {
-        const response = await fetch(`http://localhost:7001/applications/${id}`, {
-          headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': `bearer ${token.token}`
-          },
-          method: 'PUT',
-          body: JSON.stringify(formData)
-        });
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        console.log(error)
-      }
+    try {
+      const response = await fetch(`http://localhost:7001/applications/${id}`, {
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `bearer ${token.token}`
+        },
+        method: 'PUT',
+        body: JSON.stringify(formData)
+      });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error)
     }
+  }
 
   const handleCheckbox = (e) => {
     const name = e.target.name;
@@ -81,13 +81,35 @@ return (
       <p>Accepted: {singleAppData.accepted === true ? 'yes' : 'no'}  </p>
       <p>Denied: {singleAppData.denied === true ? 'yes' : 'no'} </p> 
     </div>
-    <form onChange={handleCheckbox} onSubmit={formSubmit}>
-      Interview <input type='checkbox' name='interview' value={false} />
-      Phone Screening <input type='checkbox' name='phoneScreening' value={false} />
-      Accepted <input type='checkbox' name='accepted'value={true} />
-      Denied / Didn't hear back <input type='checkbox' name='denied' value={false}/>
-      <button>submit</button>
-    </form>
+    <div className='mx-auto'>
+      <form className='form-control' onChange={handleCheckbox} onSubmit={formSubmit}>
+        <div className='form-control'>
+          <label htmlFor="interview" className='cursor-pointer label'>
+            <span className='label-text'>Interview</span>
+            <input className='checkbox checkbox-secondary' type='checkbox' name='interview' value={false} />
+          </label>
+        </div>
+        <div className='form-control'>
+          <label htmlFor="interview" className='cursor-pointer label'>
+            <span className='label-text'>Phone Screening</span>
+            <input className='checkbox checkbox-secondary' type='checkbox' name='phoneScreening' value={false} />
+          </label>
+        </div>
+        <div className='form-control'>
+          <label htmlFor="interview" className='cursor-pointer label'>
+            <span className='label-text'>Accepted</span>
+            <input className='checkbox checkbox-secondary' type='checkbox' name='accepted' value={false} />
+          </label>
+        </div>
+        <div className='form-control'>
+          <label htmlFor="interview" className='cursor-pointer label'>
+            <span className='label-text'>Denied / Didn't hear back</span>
+            <input className='checkbox checkbox-secondary' type='checkbox' name='denied' value={false} />
+          </label>
+        </div>  
+        <button>submit</button>
+      </form>
+    </div>
   </>
 )
 }
