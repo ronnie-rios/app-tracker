@@ -1,18 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../store/authContext';
 
 const NavBar = () => {
+  const { logout, token } = useAuth();
 
-  const logout = async () => {
+  const navigate = useNavigate();
+
+  const logoutFunc = async () => {
     try {
       const response = await fetch('http://localhost:7001/users/logout', {
         headers: { 
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `bearer: ${token.token}`
         },
         method: 'DELETE',
       });
       const data = response.json();
-      return data;
+      logout()
+      navigate('/')
+      
     } catch (error) {
       console.log(error)
     }
@@ -24,10 +31,10 @@ const NavBar = () => {
     </div>
     <div className="flex-none">
       <ul className="menu menu-horizontal px-1">
-        <Link to='/about'><li className='hover:text-white px-6'>About</li></Link>
-        <Link to='/'><li className='hover:text-white px-6'>View Jobs</li></Link>
+        <Link to='/'><li className='hover:text-white px-6'>Home</li></Link>
+        <Link to='/home'><li className='hover:text-white px-6'>View Jobs</li></Link>
         <Link to='/signup'><li className='hover:text-white px-6'>Sign-up</li></Link>
-        <button onClick={()=> logout()}className='hover:text-white px-6'>Logout</button>
+        <button onClick={()=> logoutFunc()}className='hover:text-white px-6'>Logout</button>
       </ul>
     </div>
   </nav>

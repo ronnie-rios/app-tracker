@@ -33,7 +33,7 @@ const Login = () => {
         const data = await response.json();
         if(response.ok) {
           login(data);
-          navigate('/')
+          navigate('/home')
         }
       } catch (error) {
         console.log(error)

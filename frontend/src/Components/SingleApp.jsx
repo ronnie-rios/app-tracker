@@ -62,7 +62,7 @@ const SingleApp = () => {
   const formSubmit = (e) => {
     e.preventDefault();
     editData();
-    navigate(`/`)
+    navigate(`/home`)
   }
 
 return (

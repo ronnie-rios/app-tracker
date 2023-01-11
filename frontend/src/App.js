@@ -13,9 +13,9 @@ function App() {
     <Router>
       <NavBar />
       <Routes>
-        <Route path='/' element={<HomePage />} />
+        <Route path='/home' element={<HomePage />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/about' element={<About />} />
+        <Route path='/' element={<About />} />
         <Route path='/:id' element={<SingleApp />} />
       </Routes>
     </Router>
