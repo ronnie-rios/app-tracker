@@ -1,13 +1,20 @@
 import Login from '../UI/Login';
 import { useNavigate } from 'react-router-dom';
+
 const About = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  
   return (
-    <div>
-        <h1>Job trcker</h1>
-        <p>welcome to Job Tracker</p>
-        <button onClick={()=> navigate('/signup')} className='py-1 px-4 rounded bg-blue-800 font-bold text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline'>Click to signup</button>
-        <Login />
+    <div className='hero min-h-screen bg-base-200'>
+      <div className="hero-content text-center">
+        <div className="max-w-md">
+          <h1 className='text-5xl font-bold'>Job trcker</h1>
+          <p className='py-6'>welcome to Job Tracker</p>
+          <Login />
+          <p className='py-6'>Don't have an account, sign up below</p>
+          <button onClick={()=> navigate('/signup')} className='btn btn-primary'>Click to signup</button>
+        </div>
+      </div>
     </div>
   )
 }

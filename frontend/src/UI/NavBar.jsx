@@ -18,8 +18,8 @@ const NavBar = () => {
       });
       const data = response.json();
       logout()
-      navigate('/')
-      
+      navigate('/') 
+      return data
     } catch (error) {
       console.log(error)
     }

@@ -3,7 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authContext'
 
 const SingleApp = () => {
-  const { isLoggedIn, token } = useAuth();
+  const { token } = useAuth();
+
   const [singleAppData, setSingleAppData] = useState([]);
   const [formData, setFormData] = useState({
     interview: false,
@@ -11,6 +12,7 @@ const SingleApp = () => {
     accepted: false,
     denied: false
   });
+
   const id = useParams().id;
   const navigate = useNavigate()
 

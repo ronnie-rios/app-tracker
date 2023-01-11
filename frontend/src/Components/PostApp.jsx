@@ -5,7 +5,7 @@ const URL = 'http://localhost:7001/applications';
 
 export const PostApp = ({ toggleRender, setToggleRender }) => {
   const [formData, setFormData] = useState({});
-  const { isLoggedIn, token } = useAuth();
+  const { token } = useAuth();
 
   const formHandler = (e) => {
     const name = e.target.name;

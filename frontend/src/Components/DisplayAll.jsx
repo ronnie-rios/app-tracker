@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authContext';
-import NotLoggedIn from '../UI/NotLoggedIn';
+
 const URL = 'http://localhost:7001/applications';
 
 export const DisplayAll = ({ toggleRender, setToggleRender}) => {
@@ -83,52 +83,48 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
         </tbody>
       )
   }
-  if (isLoggedIn === false) {
-    return (
-    <NotLoggedIn /> 
-    )
-  } else {
-    return (
-      <div className='max-w-6xl mx-auto'>
-        <div className="flex flex-col">
-          <div className="overflow-x-auto shadow-md sm:rounded-lg">
-          <div className='inline-block min-w-full align-middle"'>
-            <div className='overflow-hidden'>
-              <table className='min-w-full divide-y divide-gray-600 table-fixed lg:table-auto md:table-auto sm:table-auto'>
-              <thead className='bg-gray-100 dark:bg-gray-700'>
-                <tr>
-                  <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                    Date Submitted
-                  </th>
-                  <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                    Job Role
-                  </th>
-                  <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                    Company
-                  </th>
-                  <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                    Technologies Used
-                  </th>
-                  <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                    Progress
-                  </th>
-                  <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                    Edit
-                  </th>
-                  <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                    Delete
-                  </th>
-                </tr>
-              </thead>
-              {appsData.map((app) => renderContent(app))}
-              </table>
-            </div>
-          </div>
+ 
+  return (
+    <div className='max-w-6xl mx-auto'>
+      <div className="flex flex-col">
+        <div className="overflow-x-auto shadow-md sm:rounded-lg">
+        <div className='inline-block min-w-full align-middle"'>
+          <div className='overflow-hidden'>
+            <table className='min-w-full divide-y divide-gray-600 table-fixed lg:table-auto md:table-auto sm:table-auto'>
+            <thead className='bg-gray-100 dark:bg-gray-700'>
+              <tr>
+                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                  Date Submitted
+                </th>
+                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                  Job Role
+                </th>
+                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                  Company
+                </th>
+                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                  Technologies Used
+                </th>
+                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                  Progress
+                </th>
+                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                  Edit
+                </th>
+                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                  Delete
+                </th>
+              </tr>
+            </thead>
+            {appsData.map((app) => renderContent(app))}
+            </table>
           </div>
         </div>
+        </div>
       </div>
-    )
-  }
+    </div>
+  )
+  
 }
 
 
