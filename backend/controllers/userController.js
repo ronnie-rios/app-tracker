@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => {
             const token = crypto.randomBytes(8).toString('hex');
             foundUser.token = token
             foundUser.save()
-            res.json(foundUser)
+            res.json({ id: foundUser._id, token: foundUser.token })
         } else {
             return res.status(400).json({ error: 'invalid pw'})
         }

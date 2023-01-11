@@ -7,7 +7,7 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
   const [appsData, setAppsData] = useState([]);
   const { isLoggedIn, token } = useAuth();
   const navigate = useNavigate();
-
+  console.log(token)
   const headers = new Headers({
     'Authorization': `bearer ${token.token}`
   });
@@ -25,7 +25,7 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
       const response = await fetch(`http://localhost:7001/applications/${id}`, {
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `bearer ${token}`
+          'Authorization': `bearer ${token.token}`
         },
         method: 'DELETE',
       });

@@ -22,22 +22,22 @@ const Login = () => {
       loginData();
     }
     const loginData = async () => {
-        try {
-          const response = await fetch(URL, {
-            headers: { 
-              'Content-Type': 'application/json'
-            },
-            method: 'POST',
-            body: JSON.stringify(formData)
-          });
-          const data = await response.json();
-          if(response.ok) {
-            login(data);
-            navigate('/')
-          }
-        } catch (error) {
-          console.log(error)
+      try {
+        const response = await fetch(URL, {
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          method: 'POST',
+          body: JSON.stringify(formData)
+        });
+        const data = await response.json();
+        if(response.ok) {
+          login(data);
+          navigate('/')
         }
+      } catch (error) {
+        console.log(error)
+      }
     }
 
   return (

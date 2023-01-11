@@ -18,11 +18,10 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
   const formSubmit = (e) => {
     e.preventDefault();
     postData();
-    console.log(formData);
   }
   
   const postData = async () => {
-    formData.owner = token._id
+    formData.owner = token.id
     try {
       const response = await fetch(URL, {
         headers: { 
