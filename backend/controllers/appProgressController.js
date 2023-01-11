@@ -1,4 +1,3 @@
-const { rawListeners, find } = require('../models/ApplicationProgress');
 const ApplicationProgress = require('../models/ApplicationProgress');
 
  const getAllAppsOwner = async (req, res) => {

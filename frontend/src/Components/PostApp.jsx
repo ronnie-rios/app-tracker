@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useAuth } from '../store/authContext';
+
 const URL = 'http://localhost:7001/applications';
 
 export const PostApp = ({ toggleRender, setToggleRender }) => {
   const [formData, setFormData] = useState({});
+  const { isLoggedIn, token } = useAuth();
 
   const formHandler = (e) => {
     const name = e.target.name;
@@ -11,17 +14,20 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
       return { ...prev, [name]: value}
     })
   }
-
+  
   const formSubmit = (e) => {
     e.preventDefault();
     postData();
+    console.log(formData);
   }
   
   const postData = async () => {
+    formData.owner = token._id
     try {
       const response = await fetch(URL, {
         headers: { 
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `bearer ${token.token}`
         },
         method: 'POST',
         body: JSON.stringify(formData)
@@ -35,43 +41,43 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
   }
 
   return (
-      <form className='' onChange={formHandler} onSubmit={formSubmit}>
-        <div className="mb-4">
-          <label className='block text-sm font-bold mb-2'>Enter the role:</label>
-          <input
-            className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
-            type='text'
-            name='jobRole'
-            required
+    <form className='' onChange={formHandler} onSubmit={formSubmit}>
+      <div className="mb-4">
+        <label className='block text-sm font-bold mb-2'>Enter the role:</label>
+        <input
+          className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
+          type='text'
+          name='jobRole'
+          required
+        />
+      </div>
+      <div className="mb-6">
+        <label className='block text-sm font-bold mb-2'>Enter the company:</label>
+        <input 
+          className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
+          type='text'
+          name='company'
+          required
           />
-        </div>
-        <div className="mb-6">
-          <label className='block text-sm font-bold mb-2'>Enter the company:</label>
-          <input 
-            className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
-            type='text'
-            name='company'
-            required
-            />
-        </div>
-        <div className="mb-6">
-          <label className='block text-sm font-bold mb-2'>Enter the technologies asked:</label>
-          <input 
-            className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
-            type='text'
-            name='technologies'
-          />
-        </div>
-        <div className="mb-6">
-          <label className='block text-sm font-bold mb-2'>Date Submitted:</label>
-          <input 
-            className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
-            type='date'
-            name='dateSubmitted'
-          />
-        </div>
-        <button className='py-1 px-4 rounded bg-blue-800 font-bold text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline'>Submit!</button>
-      </form>
+      </div>
+      <div className="mb-6">
+        <label className='block text-sm font-bold mb-2'>Enter the technologies asked:</label>
+        <input 
+          className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
+          type='text'
+          name='technologies'
+        />
+      </div>
+      <div className="mb-6">
+        <label className='block text-sm font-bold mb-2'>Date Submitted:</label>
+        <input 
+          className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
+          type='date'
+          name='dateSubmitted'
+        />
+      </div>
+      <button className='py-1 px-4 rounded bg-blue-800 font-bold text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline'>Submit!</button>
+    </form>
   )
 }
 

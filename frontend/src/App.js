@@ -4,10 +4,12 @@ import About from './Components/About';
 import SingleApp from './Components/SingleApp';
 import NavBar from './UI/NavBar';
 import Signup from './UI/Signup';
+import { AuthProvider } from './store/authContext';
 
 function App() {
   return (
     <>
+    <AuthProvider>
     <Router>
       <NavBar />
       <Routes>
@@ -17,6 +19,7 @@ function App() {
         <Route path='/:id' element={<SingleApp />} />
       </Routes>
     </Router>
+    </AuthProvider>
     </>
   );
 }

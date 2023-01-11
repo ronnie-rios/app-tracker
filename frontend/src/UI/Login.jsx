@@ -1,20 +1,25 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../store/authContext';
+
 const URL = 'http://localhost:7001/users/login';
 
 const Login = () => {
     const [formData, setFormData] = useState({});
+    const navigate = useNavigate();
+    const { login } = useAuth();
 
     const formHandler = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        setFormData((prev) => {
-            return { ...prev, [name]: value}
-        })
+      const name = e.target.name;
+      const value = e.target.value;
+      setFormData((prev) => {
+          return { ...prev, [name]: value}
+      })
     }
 
     const formSubmit = (e) => {
-        e.preventDefault();
-       loginData();
+      e.preventDefault();
+      loginData();
     }
     const loginData = async () => {
         try {
@@ -26,8 +31,10 @@ const Login = () => {
             body: JSON.stringify(formData)
           });
           const data = await response.json();
-          console.log(data);
-          return data;
+          if(response.ok) {
+            login(data);
+            navigate('/')
+          }
         } catch (error) {
           console.log(error)
         }
