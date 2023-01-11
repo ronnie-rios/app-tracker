@@ -9,7 +9,12 @@ const ApplicationProgressSchema = new mongoose.Schema({
     interview: Boolean,
     phoneScreening: Boolean,
     accepted: Boolean,
-    denied: Boolean
+    denied: Boolean,
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        
+    }
 }, { timestamps: true });
 
 const ApplicationProgress = mongoose.model('ApplicationProgress', ApplicationProgressSchema);

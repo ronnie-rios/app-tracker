@@ -50,22 +50,21 @@ router.post('/login', async (req, res) => {
             const token = crypto.randomBytes(8).toString('hex');
             foundUser.token = token
             foundUser.save()
-            res.json(foundUser)
+            res.json({ id: foundUser._id, token: foundUser.token })
         } else {
             return res.status(400).json({ error: 'invalid pw'})
         }
     } catch (error) {
-        
+        res.json(error)
     }
 });
 
-router.delete('/logout', (req, res) => {
-     // req.user.token = crypto.randomBytes(16)
+router.delete('/logout', requiredToken, (req, res) => {
     req.user.token = null
     req.user.save()
         // do not send new token back to client
         .then(() => res.sendStatus(204))
-        .catch(next)
+        .catch((err)=> res.json(err))
 });
 
 module.exports = router;

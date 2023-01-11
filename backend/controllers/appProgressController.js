@@ -1,7 +1,11 @@
 const ApplicationProgress = require('../models/ApplicationProgress');
 
+ const getAllAppsOwner = async (req, res) => {
+    const apps = await ApplicationProgress.find().populate('owner');
+    return res.json(apps);
+};
  const getAllApps = async (req, res) => {
-    const apps = await ApplicationProgress.find();
+    const apps = await ApplicationProgress.find({ owner: req.user._id });
     return res.json(apps);
 };
 
@@ -16,6 +20,7 @@ const getSingleApp = async (req, res) => {
 
 const postApp = async (req, res) => {
     const newApp = await ApplicationProgress.create(req.body);
+    newApp.owner = req.user._id
     if (!req.body.jobRole || !req.body.company) {
         return res.json({
             err: 'please enter at the role and company'
@@ -27,8 +32,14 @@ const postApp = async (req, res) => {
 
 const putApp = async (req, res) => {
     try {
-        const updateApp = await ApplicationProgress.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        return res.json(updateApp)
+        const findApp = await ApplicationProgress.findById(req.params.id);
+        const owner = await checkOwner(req, findApp)
+        if (!owner) {
+            return res.json({ err: 'err'})
+        } else {
+            const updateApp = await findApp.updateOne(req.body)
+            return res.json(updateApp)
+        }
     } catch (error) {
         res.json(error)
     }
@@ -43,9 +54,18 @@ const deleteApp = async (req, res) => {
 }
 
 module.exports = {
+    getAllAppsOwner,
     getAllApps,
     getSingleApp,
     postApp,
     putApp,
     deleteApp
+}
+
+const checkOwner = (req, doc) => {
+    const owner = doc.owner._id ? doc.owner_id : doc.owner
+    if(!req.user._id.equals(owner)){
+        return 'err'
+    }
+    return doc
 }
