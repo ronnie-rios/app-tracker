@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../store/authContext';
 
 const NavBar = () => {
-  const { logout, token } = useAuth();
+  const { isLoggedIn, logout, token } = useAuth();
 
   const navigate = useNavigate();
 
@@ -31,10 +31,9 @@ const NavBar = () => {
     </div>
     <div className="flex-none">
       <ul className="menu menu-horizontal px-1">
-        <Link to='/'><li className='hover:text-white px-6'>Home</li></Link>
-        <Link to='/home'><li className='hover:text-white px-6'>View Jobs</li></Link>
-        <Link to='/signup'><li className='hover:text-white px-6'>Sign-up</li></Link>
-        <button onClick={()=> logoutFunc()}className='hover:text-white px-6'>Logout</button>
+        {!isLoggedIn ? '' : <Link to='/home'><li className='hover:text-white px-6'>View Jobs</li></Link>}
+        {isLoggedIn ? '' :<Link to='/signup'><li className='hover:text-white px-6'>Sign-up</li></Link>}
+        {isLoggedIn ? <button onClick={()=> logoutFunc()}className='hover:text-white px-6'>Logout</button> : <button onClick={()=> navigate('/')}className='hover:text-white px-6'>Log In</button>}
       </ul>
     </div>
   </nav>

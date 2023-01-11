@@ -17,6 +17,7 @@ const Signup = () => {
        signupData();
        
     }
+
     const signupData = async () => {
         try {
           const response = await fetch(URL, {
@@ -34,9 +35,13 @@ const Signup = () => {
     }
 
   return (
-    <>
-    <h2>Signup</h2>
-      <form className='' onChange={formHandler} onSubmit={formSubmit}>
+    <div className='hero min-h-screen bg-base-200'>
+      <div className='hero-content flex-col'>
+      <div className="text-center">
+        <h2 className="text-5xl font-bold">Sign-Up</h2>
+        <p className="py-6">Create an account and start tracking your applications, and what stage of the hiring process you are in</p>
+      </div>
+      <form className="card px-4 py-4 flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100" onChange={formHandler} onSubmit={formSubmit}>
         <div className="mb-4">
           <label className='block text-sm font-bold mb-2'>Enter your email:</label>
           <input
@@ -63,9 +68,10 @@ const Signup = () => {
             name='password'
           />
         </div>
-        <button className='py-1 px-4 rounded bg-blue-800 font-bold text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline'>Submit!</button>
-      </form>  
-    </>
+        <button className='py-1 px-4 rounded bg-blue-800 font-bold text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline'>Create Account</button>
+      </form>
+      </div> 
+    </div>
   )
 }
 
