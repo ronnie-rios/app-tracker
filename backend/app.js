@@ -11,6 +11,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/apptracker', {
     useUnifiedTopology: true
   });
 
+  //|| 'mongodb://localhost/apptracker'
+
 const app = express();
 
 app.use(cors());
