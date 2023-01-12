@@ -17,6 +17,7 @@ const NavBar = () => {
         method: 'DELETE',
       });
       const data = response.json();
+      //TODO - check if token gets cleared on logout
       logout()
       navigate('/') 
       return data

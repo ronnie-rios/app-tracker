@@ -5,7 +5,10 @@ const mongoose = require('mongoose');
 const auth = require('./util/auth')
 //express 
 const port = 7001;
-mongoose.connect('mongodb://localhost/apptracker');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/apptracker', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
 
 const app = express();
 

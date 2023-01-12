@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const passport = require('passport');
 
 const User = require('../models/User');
+const { model } = require('mongoose');
 
 const requiredToken = passport.authenticate('bearer', { session: false });
 
@@ -68,3 +69,4 @@ router.delete('/logout', requiredToken, (req, res) => {
 });
 
 module.exports = router;
+
