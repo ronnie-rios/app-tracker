@@ -7,7 +7,11 @@ const URL = 'http://localhost:7001/users/login';
 
 const Login = () => {
     const [formData, setFormData] = useState({});
-    const [errorMsg, setErrorMsg] = useState(false);
+    const [errorMsg, setErrorMsg] = useState({
+      error: false,
+      errTitle: '',
+      errMessage: ''
+    });
     const navigate = useNavigate();
     const { login } = useAuth();
 
@@ -37,7 +41,11 @@ const Login = () => {
           login(data);
           navigate('/home')
         } else {
-          setErrorMsg(true)
+          setErrorMsg({
+            error: true,
+            errTitle: 'Invalid Login',
+            errMessage: 'Please enter the correct login credentials.'
+          });
         }
       } catch (error) {
         console.log(error)
@@ -75,7 +83,7 @@ const Login = () => {
           />
         </div>
         <button className='py-1 px-4 rounded bg-blue-800 font-bold text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline'>Submit!</button>
-        {errorMsg ? <ErrorMsg /> : ''}
+        {errorMsg.error ? <ErrorMsg errTitle={errorMsg.errTitle} errMessage={errorMsg.errMessage}/> : ''}
       </form>  
     </>
   )
