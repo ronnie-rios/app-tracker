@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authContext';
+import ErrorMsg from './ErrorMsg';
 
 const URL = 'http://localhost:7001/users/login';
 
 const Login = () => {
     const [formData, setFormData] = useState({});
+    const [errorMsg, setErrorMsg] = useState(false);
     const navigate = useNavigate();
     const { login } = useAuth();
 
@@ -34,6 +36,8 @@ const Login = () => {
         if(response.ok) {
           login(data);
           navigate('/home')
+        } else {
+          setErrorMsg(true)
         }
       } catch (error) {
         console.log(error)
@@ -71,6 +75,7 @@ const Login = () => {
           />
         </div>
         <button className='py-1 px-4 rounded bg-blue-800 font-bold text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline'>Submit!</button>
+        {errorMsg ? <ErrorMsg /> : ''}
       </form>  
     </>
   )

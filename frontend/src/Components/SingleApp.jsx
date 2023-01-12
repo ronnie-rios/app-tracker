@@ -68,14 +68,13 @@ const SingleApp = () => {
   }
 
 return (
-  <>
-    <div>
-      <h3>Job info</h3>
+  <main className=''>
+    <div className='card w-96 bg-base-100 shadow-xl'>
+      <h3 className="card-title">Job info</h3>
       <h4>Role: {singleAppData.jobRole}</h4>
       <h4>Company: {singleAppData.company}</h4>
       <h4>Tech Stack: {singleAppData.technologies}</h4>
-      <h4>How'd you hear about this job? {singleAppData.fromWhere}</h4>
-      <h3>Job status</h3>
+      <h3 className="card-title">Job status</h3>
       <p>Interview: {singleAppData.interview === true ? 'yes' : 'no'} </p>
       <p>Phone Call: {singleAppData.phoneScreening === true ? 'yes' : 'no'} </p>
       <p>Accepted: {singleAppData.accepted === true ? 'yes' : 'no'}  </p>
@@ -110,7 +109,7 @@ return (
         <button>submit</button>
       </form>
     </div>
-  </>
+  </main>
 )
 }
 
