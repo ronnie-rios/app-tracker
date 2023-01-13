@@ -56,8 +56,8 @@ const Signup = () => {
     <div className='hero min-h-screen bg-base-200'>
       <div className='hero-content flex-col'>
       <div className="text-center">
-        <h2 className="text-5xl font-bold">Sign-Up</h2>
-        <p className="py-6">Create an account and start tracking your applications, and what stage of the hiring process you are in</p>
+        <h2 className="text-5xl font-bold">Sign Up</h2>
+        <p className="py-6">Create an account and start tracking your applications.</p>
       </div>
       <form className="card px-4 py-4 flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100" onChange={formHandler} onSubmit={formSubmit}>
         <div className="mb-4">
