@@ -11,7 +11,7 @@ const About = () => {
           <h1 className='text-5xl font-bold'>Job Tracker</h1>
           <p className='py-6'>Welcome to Job Tracker</p>
           <Login />
-          <p className='py-6'>Don't have an account, sign up below</p>
+          <p className='py-6'>Don't have an account? Sign up below.</p>
           <button onClick={()=> navigate('/signup')} className='btn btn-primary'>Click to signup</button>
         </div>
       </div>

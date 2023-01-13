@@ -54,9 +54,9 @@ const Login = () => {
     }
 
   return (
-    <>
+    <div className='w-full max-w-sm p-4  border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8'>
       <h2>Login</h2>
-      <form className='' onChange={formHandler} onSubmit={formSubmit}>
+      <form className='space-y-6' onChange={formHandler} onSubmit={formSubmit}>
         <div className="mb-4">
           <label className='block text-sm font-bold mb-2'>Enter your email:</label>
           <input
@@ -86,7 +86,7 @@ const Login = () => {
         <button className='py-1 px-4 rounded bg-blue-800 font-bold text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline'>Submit!</button>
         {errorMsg.error ? <ErrorMsg errTitle={errorMsg.errTitle} errMessage={errorMsg.errMessage}/> : ''}
       </form>  
-    </>
+    </div>
   )
 }
 
