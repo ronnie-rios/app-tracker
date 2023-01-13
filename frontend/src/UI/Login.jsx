@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authContext';
 import ErrorMsg from './ErrorMsg';
 
-const URL = 'http://localhost:7001/users/login';
 
+const URL = process.env.REACT_APP_BASEURL;
+const LOGIN_URL = `${URL}/users/login`;
 const Login = () => {
     const [formData, setFormData] = useState({});
     const [errorMsg, setErrorMsg] = useState({
@@ -29,7 +30,7 @@ const Login = () => {
     }
     const loginData = async () => {
       try {
-        const response = await fetch(URL, {
+        const response = await fetch(LOGIN_URL, {
           headers: { 
             'Content-Type': 'application/json'
           },

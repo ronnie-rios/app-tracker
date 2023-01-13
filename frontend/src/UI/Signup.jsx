@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import ErrorMsg from './ErrorMsg';
 
-const URL = 'http://localhost:7001/users/signup';
+const URL = process.env.REACT_APP_BASEURL;
+const USER_URL = `${URL}/users/signup`;
 
 const Signup = () => {
   const [formData, setFormData] = useState({});
@@ -30,7 +30,7 @@ const Signup = () => {
 
   const signupData = async () => {
       try {
-        const response = await fetch(URL, {
+        const response = await fetch(USER_URL, {
           headers: { 
             'Content-Type': 'application/json'
           },

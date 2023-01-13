@@ -2,6 +2,9 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../store/authContext';
 
+const URL = process.env.REACT_APP_BASEURL;
+const USER_URL = `${URL}/user/logout`;
+
 const NavBar = () => {
   const { isLoggedIn, logout, token } = useAuth();
 
@@ -9,7 +12,7 @@ const NavBar = () => {
 
   const logoutFunc = async () => {
     try {
-      const response = await fetch('http://localhost:7001/users/logout', {
+      const response = await fetch(USER_URL, {
         headers: { 
           'Content-Type': 'application/json',
           'Authorization': `bearer: ${token.token}`

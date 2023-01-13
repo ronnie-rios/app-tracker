@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authContext'
 
+const URL = process.env.REACT_APP_BASEURL;
+const APP_URL = `${URL}/applications/`;
+
 const SingleApp = () => {
   const { token } = useAuth();
 
@@ -17,7 +20,7 @@ const SingleApp = () => {
   const navigate = useNavigate()
 
   const getSingleApp = async () => {
-      const response = await fetch(`http://localhost:7001/applications/${id}`, {
+      const response = await fetch(APP_URL + id, {
         headers: { 
           'Authorization': `bearer ${token.token}`
         },
@@ -32,7 +35,7 @@ const SingleApp = () => {
 
   const editData = async () => {
     try {
-      const response = await fetch(`http://localhost:7001/applications/${id}`, {
+      const response = await fetch(APP_URL + id, {
         headers: { 
           'Content-Type': 'application/json',
           'Authorization': `bearer ${token.token}`

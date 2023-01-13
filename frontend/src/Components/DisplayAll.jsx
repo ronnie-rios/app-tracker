@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authContext';
 
-const URL = 'http://localhost:7001/applications';
+const URL = process.env.REACT_APP_BASEURL;
+const APP_URL = `${URL}/applications/`;
 
 export const DisplayAll = ({ toggleRender, setToggleRender}) => {
   const [appsData, setAppsData] = useState([]);
@@ -10,7 +11,7 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
   const navigate = useNavigate(); 
   
   const getAllApps = async () => {
-    const response = await fetch(URL, {
+    const response = await fetch(APP_URL, {
       headers:{
         'Authorization': `bearer ${token.token}`
       }, 
@@ -21,7 +22,7 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
   }
   const deleteData = async (id) => {
     try {
-      const response = await fetch(`http://localhost:7001/applications/${id}`, {
+      const response = await fetch(APP_URL + id, {
         headers: { 
           'Content-Type': 'application/json',
           'Authorization': `bearer ${token.token}`
