@@ -6,6 +6,8 @@ Job Tracker is a web application where a user can sign up and create an account 
 ## Usage
 The form opens up with a login page, if a user does not have an account, you can sign up for one and start posting and tracking your jobs.
 
+## Demo
+![jobtracker](https://user-images.githubusercontent.com/79483108/212496593-061673fd-621e-458f-8727-c43e700f76c8.gif)
 ## Technologies Used:
 - React
 - React Router Dom
