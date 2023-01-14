@@ -25,7 +25,7 @@ The backend runs on a Node Express server and is deployed on Render, while the d
 - Ronnie Rios
 
 ## Questions
-Feel free to reach and contact me if there are any questions. You can also create an issue on the repo as well.
+Feel free to contact me if there are any questions. You can also create an issue on the repo as well.
 
 ## License
 This repo is licensed under the [MIT License](https://opensource.org/licenses/MIT).
