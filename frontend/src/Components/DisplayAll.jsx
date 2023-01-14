@@ -33,7 +33,7 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
         setToggleRender(!toggleRender)
         return data;
     } catch (error) {
-      console.log(error)
+      return error
     }
   }
 
