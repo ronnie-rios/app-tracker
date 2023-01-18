@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useAuth } from '../store/authContext';
 
-const URL = 'http://localhost:7001/applications';
+const URL = process.env.REACT_APP_BASEURL;
+const APP_URL = `${URL}/applications`
 
 export const PostApp = ({ toggleRender, setToggleRender }) => {
   const [formData, setFormData] = useState({});
@@ -23,7 +24,7 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
   const postData = async () => {
     formData.owner = token.id
     try {
-      const response = await fetch(URL, {
+      const response = await fetch(APP_URL, {
         headers: { 
           'Content-Type': 'application/json',
           'Authorization': `bearer ${token.token}`
