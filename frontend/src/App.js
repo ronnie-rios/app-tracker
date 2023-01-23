@@ -5,6 +5,8 @@ import SingleApp from './Components/SingleApp';
 import NavBar from './UI/NavBar';
 import Signup from './UI/Signup';
 import { AuthProvider } from './store/authContext';
+import Profile from './Components/Profile';
+import EditProfile from './Components/EditProfile';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <NavBar />
       <Routes>
         <Route path='/home' element={<HomePage />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/profileEdit' element={<EditProfile />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/' element={<About />} />
         <Route path='/:id' element={<SingleApp />} />
