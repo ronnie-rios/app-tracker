@@ -4,12 +4,12 @@ const crypto = require('crypto');
 const passport = require('passport');
 
 const User = require('../models/User');
-const { model } = require('mongoose');
 
 const requiredToken = passport.authenticate('bearer', { session: false });
 
 const router = express.Router();
 
+//get all users | production only
 router.get('/', async (req, res) => {
     try {
         const user = await User.find();
@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
     }
 });
 
+//signup create account
 router.post('/signup', async (req, res) => {
     try {
         if(!req.body.email || !req.body.password) {
@@ -38,6 +39,7 @@ router.post('/signup', async (req, res) => {
     }
 });
 
+//login 
 router.post('/login', async (req, res) => {
     const password = req.body.password;
     const email = req.body.email;
@@ -60,6 +62,33 @@ router.post('/login', async (req, res) => {
     }
 });
 
+//profile data
+router.get('/profile/:id', requiredToken, async(req, res) => {
+    const id = req.params.id
+     try {     
+        const foundUser = await User.findById(id);
+        if(foundUser === null) {
+            return res.status(404).json({ err: 'user not found' })
+        }
+        res.json({ id: foundUser._id, token: foundUser.token, username: foundUser.username, jobDesc: foundUser.jobDesc, roleLookingFor: foundUser.roleLookingFor, overallExperience: foundUser.overallExperience, skills: foundUser.skills })
+        //res.json(foundUser)
+        
+    } catch (error) {
+        res.json(error)
+    }
+});
+
+router.put('/profile/:id', requiredToken, async (req, res) => {
+    const id = req.params.id
+    try {
+        const foundUser = await User.findByIdAndUpdate(id, req.body, { new: true })
+        res.json({ id: foundUser._id, token: foundUser.token, username: foundUser.username, jobDesc: foundUser.jobDesc, roleLookingFor: foundUser.roleLookingFor, overallExperience: foundUser.overallExperience, skills: foundUser.skills })
+    } catch (error) {
+        res.json(error)
+    }
+})
+
+//logout
 router.delete('/logout', requiredToken, (req, res) => {
     req.user.token = null
     req.user.save()
@@ -69,4 +98,3 @@ router.delete('/logout', requiredToken, (req, res) => {
 });
 
 module.exports = router;
-

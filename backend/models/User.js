@@ -16,8 +16,19 @@ const userSchema = new mongoose.Schema({
         required: true,
         
     },
-    token: String
+    token: String,
+    jobDesc: String,
+    roleLookingFor: String,
+    overallExperience: Number,
+    skills: [{
+        skillName: String,
+        years: Number
+    }]
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
 
+// jobDesc: Str
+// roleLookingFor: Str etry full etc
+// experience: int 1,2,3 years etc
+//skills { asdfasdfasdfsdf JSr,asdfas}
