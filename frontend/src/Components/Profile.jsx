@@ -4,14 +4,15 @@ import { useAuth } from '../store/authContext';
 import NotLoggedIn from '../UI/NotLoggedIn';
 
 const URL = process.env.REACT_APP_BASEURL;
-const APP_URL = `${URL}/users/profile/63cc741ef26f6a7093bd2017`;
+const APP_URL = `${URL}/users/profile/`;
 
 const Profile = () => {
     const [profileData, setProfileData] = useState([]);
     const { isLoggedIn, token } = useAuth();
-    console.log(token)
+    const navigate = useNavigate();
+
     const getProfileData = async () => {
-        const response = await fetch(APP_URL, {
+        const response = await fetch(APP_URL+ token.id, {
             headers:{
             'Authorization': `bearer ${token.token}`
             }, 
@@ -40,13 +41,14 @@ const Profile = () => {
                 <div>
                     {profileData.skills && profileData.skills.map((skill) => {
                         return (
-                            <>
-                            <div>{skill.skillName}</div>
-                            <div>{skill.years}</div>
-                            </>
+                            <div key={skill.skillName}>
+                                <div>{skill.skillName}</div>
+                                <div>{skill.years}</div>
+                            </div>
                         )
                     })}
                 </div>
+                <button className='bg-green' onClick={()=> navigate(`/profile/${token.id}`)}>Edit Profile</button>
             </div>
         )
     }
