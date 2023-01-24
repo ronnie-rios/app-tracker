@@ -21,7 +21,7 @@ const Profile = () => {
         const data = await response.json();
         setProfileData(data);
     }
-
+    const { username, jobDesc, roleLookingFor, overallExperience, skills } = profileData
     useEffect(() => {
         getProfileData()
     },[])
@@ -33,22 +33,33 @@ const Profile = () => {
         )
     } else {
         return (
-            <div className="">
-                <h3>{profileData.username}</h3>
-                <h3>{profileData.jobDesc}</h3>
-                <h3>{profileData.roleLookingFor}</h3>
-                <h3>{profileData.overallExperience}</h3>
-                <div>
-                    {profileData.skills && profileData.skills.map((skill) => {
+            <div className="max-w-screen-xl mx-auto m-10">
+                <div className='grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 p-8 mb-8 md:gap-8'>
+                    <div className='card col-span-1'>
+                        <h3>Profile Section</h3>
+                        <h3 className='card-title'>{username}</h3>
+                        <button className='bg-green' onClick={()=> navigate(`/profile/${token.id}`)}>Edit Profile</button>
+                    </div>
+                    <div className='col-span-2  border rounded-md border-sky-200 p-4'>
+                        <h3>Job looking for</h3>
+                        <h3>{jobDesc}</h3>
+                        <h3>{roleLookingFor}</h3>
+                        <h3>{overallExperience}</h3>
+
+                    </div>
+                <div className='col-start-2  col-span-2 border rounded-md border-sky-200 p-4'>
+                    {skills && skills.map((skill) => {
                         return (
+                            <>
                             <div key={skill.skillName}>
-                                <div>{skill.skillName}</div>
-                                <div>{skill.years}</div>
+                                <p>{skill.skillName}</p>
+                                <p>{skill.years}</p>
                             </div>
+                            </>
                         )
                     })}
                 </div>
-                <button className='bg-green' onClick={()=> navigate(`/profile/${token.id}`)}>Edit Profile</button>
+                </div>
             </div>
         )
     }
