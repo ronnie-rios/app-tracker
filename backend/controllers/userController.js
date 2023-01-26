@@ -66,23 +66,46 @@ router.post('/login', async (req, res) => {
 router.get('/profile/:id', requiredToken, async(req, res) => {
     const id = req.params.id
      try {     
-        const foundUser = await User.findById(id);
+        const foundUser = await User.findById(id).select('-hashedPassword');
         if(foundUser === null) {
             return res.status(404).json({ err: 'user not found' })
         }
-        res.json({ id: foundUser._id, token: foundUser.token, username: foundUser.username, jobDesc: foundUser.jobDesc, roleLookingFor: foundUser.roleLookingFor, overallExperience: foundUser.overallExperience, skills: foundUser.skills })
-        //res.json(foundUser)
+        res.json(foundUser)
         
     } catch (error) {
         res.json(error)
     }
 });
 
-router.put('/profile/:id', requiredToken, async (req, res) => {
+router.put('/profile/edit/skills/:id', requiredToken, async (req, res) => {
     const id = req.params.id
+    //
     try {
-        const foundUser = await User.findByIdAndUpdate(id, req.body, { new: true })
-        res.json({ id: foundUser._id, token: foundUser.token, username: foundUser.username, jobDesc: foundUser.jobDesc, roleLookingFor: foundUser.roleLookingFor, overallExperience: foundUser.overallExperience, skills: foundUser.skills })
+        const updateUser = await User.findByIdAndUpdate(id,{ $push: {skills: req.body } }, { new: true })
+        // const updateUser = await foundUser
+        res.json({ id: updateUser._id, token: updateUser.token, username: updateUser.username, jobDesc: updateUser.jobDesc, roleLookingFor: updateUser.roleLookingFor, overallExperience: updateUser.overallExperience, skills: updateUser.skills })
+    } catch (error) {
+        res.json(error)
+    }
+});
+router.delete('/profile/edit/skills/:id', requiredToken, async (req, res) => {
+    const id = req.params.id
+    //
+    try {
+        const updateUser = await User.findByIdAndUpdate(id,{ $pullAll: {skills: req.body } }, { new: true })
+        // const updateUser = await foundUser
+        res.json({ id: updateUser._id, token: updateUser.token, username: updateUser.username, jobDesc: updateUser.jobDesc, roleLookingFor: updateUser.roleLookingFor, overallExperience: updateUser.overallExperience, skills: updateUser.skills })
+    } catch (error) {
+        res.json(error)
+    }
+});
+router.put('/profile/edit/:id', requiredToken, async (req, res) => {
+    const id = req.params.id
+    //
+    try {
+        const updateUser = await User.findByIdAndUpdate(id, req.body, { new: true })
+        // const updateUser = await foundUser
+        res.json({ id: updateUser._id, token: updateUser.token, username: updateUser.username, jobDesc: updateUser.jobDesc, roleLookingFor: updateUser.roleLookingFor, overallExperience: updateUser.overallExperience, education: updateUser.education, workStatus: updateUser.workStatus, salary: updateUser.salary, idealCompany: updateUser.idealCompany, workCitizen: updateUser.workCitizen, jobLevel: updateUser.jobLevel })
     } catch (error) {
         res.json(error)
     }

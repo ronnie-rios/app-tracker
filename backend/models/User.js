@@ -16,14 +16,23 @@ const userSchema = new mongoose.Schema({
         required: true,
         
     },
+    //all of this data,
+    // personal + work exper and lines 20 -17 as a separate model
     token: String,
-    jobDesc: String,
+    idealCompany: String,
     roleLookingFor: String,
+    previousRole: String,
     overallExperience: Number,
     skills: [{
         skillName: String,
         years: Number
-    }]
+    }],
+    education: String,
+    workStatus: String,
+    salary: Number,
+    jobLevel: String,
+    workType: String,
+    workCitizen: String, //work in US 
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
