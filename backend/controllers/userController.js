@@ -88,14 +88,14 @@ router.put('/profile/edit/skills/:id', requiredToken, async (req, res) => {
         res.json(error)
     }
 });
-router.delete('/profile/edit/skills/:id', requiredToken, async (req, res) => {
-    const id = req.params.id
-    //
+router.delete('/profile/edit/:userId/skills/:skillId', requiredToken, async (req, res) => {
+    const id = req.params.userId
+    const id2 = req.params.skillId
     try {
-        const updateUser = await User.findByIdAndUpdate(id,{ $pullAll: {skills: req.body } }, { new: true })
-        // const updateUser = await foundUser
-        res.json({ id: updateUser._id, token: updateUser.token, username: updateUser.username, jobDesc: updateUser.jobDesc, roleLookingFor: updateUser.roleLookingFor, overallExperience: updateUser.overallExperience, skills: updateUser.skills })
+        const updateUser = await User.findByIdAndUpdate(id, { $pull: { skills: { _id: id2 } } }, { new: true })
+        res.json(updateUser)
     } catch (error) {
+
         res.json(error)
     }
 });
@@ -103,9 +103,9 @@ router.put('/profile/edit/:id', requiredToken, async (req, res) => {
     const id = req.params.id
     //
     try {
-        const updateUser = await User.findByIdAndUpdate(id, req.body, { new: true })
-        // const updateUser = await foundUser
-        res.json({ id: updateUser._id, token: updateUser.token, username: updateUser.username, jobDesc: updateUser.jobDesc, roleLookingFor: updateUser.roleLookingFor, overallExperience: updateUser.overallExperience, education: updateUser.education, workStatus: updateUser.workStatus, salary: updateUser.salary, idealCompany: updateUser.idealCompany, workCitizen: updateUser.workCitizen, jobLevel: updateUser.jobLevel })
+        const updateUser = await User.findByIdAndUpdate(id, req.body, { new: true }).select('-hashedPassword')
+        //res.json({ id: updateUser._id, token: updateUser.token, username: updateUser.username, jobDesc: updateUser.jobDesc, roleLookingFor: updateUser.roleLookingFor, overallExperience: updateUser.overallExperience, education: updateUser.education, workStatus: updateUser.workStatus, salary: updateUser.salary, idealCompany: updateUser.idealCompany, workCitizen: updateUser.workCitizen, jobLevel: updateUser.jobLevel })
+        res.json(updateUser)
     } catch (error) {
         res.json(error)
     }
