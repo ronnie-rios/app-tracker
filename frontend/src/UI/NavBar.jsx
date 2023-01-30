@@ -27,7 +27,7 @@ const NavBar = () => {
     } catch (error) {
       return error
     }
-}
+  }
   return (
   <nav className="navbar bg-gray-700">
     <div className="flex-1">

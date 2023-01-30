@@ -44,16 +44,15 @@ const postData = async () => {
       body: JSON.stringify(formData)
     });
     const data = await response.json();
-    console.log(data)
-    //navigate('/profile')
-    //return data
+    navigate('/profile')
+    return data
   } catch (error) {
     return error
   }
 } 
   return (
-    <div>
-      <div>
+    <div className='w-full max-w-2xl mx-auto p-10'>
+      <div className='form-control p-10 border border-gray-200 rounded-lg'>
         <h2>Please answer the questions to the best of your ability. We will use this data to match you to relevant jobs</h2>
         <form onChange={formHandler} onSubmit={formSubmit}>
           <div className="mb-4">
@@ -163,10 +162,11 @@ const postData = async () => {
           <div className="mb-4">
             <label className='block text-lg text-white mb-2'>Overall professional experience?</label>
             <input
-              className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
+              className='input-group shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
               type='number'
               name='overallExperience'          
             />
+              <span>Years</span>
           </div>
           <div className="mb-4">
             <label className='block text-lg text-white mb-2'>Highest education achieved?</label>
