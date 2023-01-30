@@ -15,7 +15,7 @@ const Profile = () => {
     const [toggleRender, setToggleRender] = useState(false);
     const { isLoggedIn, token } = useAuth();
     const navigate = useNavigate();
-    console.log(token)
+    console.log(token);
 
     const getProfileData = async () => {
         const response = await fetch(APP_URL+ token.id, {
@@ -30,15 +30,15 @@ const Profile = () => {
     useEffect(() => {
         getProfileData()
     },[toggleRender]);
-
-    const { username, roleLookingFor, idealCompany, jobLevel, previousRole, workType, education, salary, overallExperience, skills } = profileData
+   
+    const { username, roleLookingFor, idealCompany, jobLevel, previousRole, workType, jobDesc, salary, overallExperience, skills } = profileData
    
     const removeSkill = async (id) => {
         try {
           const response = await fetch(SKILL_URL + token.id+'/skills/'+ id, {
             headers: { 
               'Content-Type': 'application/json',
-              'Authorization': `bearer: ${token.token}`
+              'Authorization': `bearer ${token.token}`
             },
             method: 'DELETE',
           });
@@ -58,14 +58,15 @@ const Profile = () => {
         )
     } else {
         return (
-            <div className="max-w-screen-lg mx-auto m-10">
-                <div className='grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 p-8 mb-8 md:gap-8'>
+            <div className=" mx-auto m-10">
+                <div className='grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 grid-cols-1 p-8 mb-8 md:gap-4'>
                     <div className='card col-span-1'>
                         <h3>Profile Section</h3>
                         <h3 className='card-title'>{username}</h3>
                         <button onClick={()=>navigate(`/profile/:${token.id}`)}>Edit Profile</button>
                     </div>
-                    <div className='col-span-2  border rounded-md border-sky-200 p-4'>
+                    
+                    <div className='md:col-span-2  border rounded-md border-sky-200 p-4'>
                         <h3 className='mb-2 text-xl font-semibold text-white'>In my next role I'm looking for. . .</h3>
                         <h3>Role: </h3>
                         <h3>{roleLookingFor}</h3>
@@ -78,7 +79,10 @@ const Profile = () => {
                         <h3>My dream company is: </h3>
                         <h3>{idealCompany}</h3>
                     </div>
-                    <div className='col-start-2 col-span-2  border rounded-md border-sky-200 p-4'>
+                    <div className="">
+                        {jobDesc}
+                    </div>
+                    <div className='md:col-start-2 md:col-span-2  border rounded-md border-sky-200 p-4'>
                         <h3 className='mb-2 text-xl font-semibold text-white'>Work Experience</h3>
                         <h3>My current or previous role: </h3>
                         <h3>{previousRole}</h3>
@@ -86,7 +90,7 @@ const Profile = () => {
                         <h3>{overallExperience}</h3>
 
                     </div>
-                <div className='col-start-2 col-span-2 border rounded-md border-sky-200 p-4 '>
+                <div className='md:col-start-2 md:col-span-2 border rounded-md border-sky-200 p-4 '>
                     <h3 className='mb-2 text-xl font-semibold text-white'>Skills</h3>
                     {!editSkills 
                      && skills && skills.map((skill) => {

@@ -8,6 +8,7 @@ const APP_URL = `${URL}/applications/`;
 
 export const DisplayAll = ({ toggleRender, setToggleRender}) => {
   const [appsData, setAppsData] = useState([]);
+ 
   const { isLoggedIn, token } = useAuth();
   const navigate = useNavigate(); 
   
@@ -85,7 +86,9 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
         </tbody>
       )
   }
-  
+  if (appsData.length ===0) {
+    return <AddJob />
+  } else {
   return (
     <div className='max-w-6xl mx-auto'>
       <div className="flex flex-col">
@@ -126,7 +129,7 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
       </div>
     </div>
   )
-  
+  }
 }
 
 
