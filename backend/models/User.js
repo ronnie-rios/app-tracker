@@ -16,8 +16,6 @@ const userSchema = new mongoose.Schema({
         required: true,
         
     },
-    //all of this data,
-    // personal + work exper and lines 20 -17 as a separate model
     token: String,
     idealCompany: String,
     roleLookingFor: String,
