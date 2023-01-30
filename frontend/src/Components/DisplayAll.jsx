@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authContext';
+import AddJob from '../UI/AddJob';
 
 const URL = process.env.REACT_APP_BASEURL;
 const APP_URL = `${URL}/applications/`;
@@ -84,7 +85,7 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
         </tbody>
       )
   }
- 
+  
   return (
     <div className='max-w-6xl mx-auto'>
       <div className="flex flex-col">
