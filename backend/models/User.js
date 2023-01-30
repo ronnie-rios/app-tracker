@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema({
     token: String,
     idealCompany: String,
     roleLookingFor: String,
+    jobDesc: String,
     previousRole: String,
     overallExperience: Number,
     skills: [{
