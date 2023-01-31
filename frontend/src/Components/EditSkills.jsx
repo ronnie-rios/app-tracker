@@ -64,9 +64,9 @@ const EditSkills = ({ toggleRender, setToggleRender, setEditSkills }) => {
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
       </button>
       <form onChange={formHandler} onSubmit={addSkills}>
-        <label>Enter tech:</label>
+        <label className='mb-2'>Enter tech:</label>
         <input className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' type="text" name='skillName' value={formData.skillName} placeholder='ex: JavaScript' required/>
-        <label>Enter a number for years of experience:</label>
+        <label className='mb-2'>Enter a number for years of experience:</label>
         <input className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' type="number" min={0} name='years' value={formData.years} required/>
         <button className='m-4 btn btn-primary btn-sm'>Add more</button>
       </form>

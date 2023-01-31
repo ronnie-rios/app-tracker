@@ -68,15 +68,15 @@ const Profile = () => {
                         <h3 className='mb-2 text-xl font-semibold text-white'>In my next role I'm looking for. . .</h3>
                         <div className='grid md:grid-cols-2'>
                             <div>
-                                <p className='text-white'>Role: </p>
+                                <p className='text-white '>Role: </p>
                                 <p>{roleLookingFor}</p>
-                                <p className='text-white'>Jobs with an experience level of:</p>
+                                <p className='text-white '>Jobs with an experience level of:</p>
                                 <p>{jobLevel}</p>
                             </div>
                             <div>   
-                                <p className='text-white'>My work setting preference is: </p>
+                                <p className='text-white  '>My work setting preference is: </p>
                                 <p>{workType}</p>
-                                <p className='text-white'>Ideal salary: ${salary}</p> 
+                                <p className='text-white '>Ideal salary: ${salary}</p> 
                                 <p className='text-white'>My dream company is: </p>
                                 <p>{idealCompany}</p>
                             </div>
@@ -87,10 +87,10 @@ const Profile = () => {
                         <p>{jobDesc}</p>
                     </div>
                     <div className='md:col-start-2 md:col-span-2 m-4 border rounded-md border-white p-4'>
-                        <p className='mb-2 text-xl font-semibold text-white'>Work Experience</p>
-                        <p className='text-white'>My current or previous role: </p>
+                        <h2 className='mb-2 text-xl font-semibold text-white '>Work Experience</h2>
+                        <p className='text-white '>My current or previous role: </p>
                         <p>{previousRole}</p>
-                        <p className='text-white'>Years of experience: </p>
+                        <p className='text-white '>Years of experience: </p>
                         <p>{overallExperience} year(s)</p>
                     </div>
                 <div className='md:col-start-2 md:col-span-2 m-4 border rounded-md border-white p-4 '>
