@@ -56,58 +56,61 @@ const Profile = () => {
         )
     } else {
         return (
-            <div className=" mx-auto m-10">
+            <div className="mx-auto my-5 mx-15 p-10">
                 <div className='grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 grid-cols-1 p-8 mb-8 md:gap-4'>
-                    <div className='card col-span-1'>
-                        <h3>Profile Section</h3>
-                        <h3 className='card-title'>{username}</h3>
-                        <button onClick={()=>navigate(`/profile/:${token.id}`)}>Edit Profile</button>
+                    <div className='card col-span-1 m-4'>
+                        <h1 className='text-white text-2xl my-4'>Profile</h1>
+                        <p className='card-title text-lg my-4'>Welcome {username}</p>
+                        <button className='btn btn-sm btn-outline max-w-sm' onClick={()=>navigate(`/profile/:${token.id}`)}>Edit Profile</button>
                     </div>
                     
-                    <div className='md:col-span-2  border rounded-md border-sky-200 p-4'>
+                    <div className='md:col-start-2 md:col-span-2 m-4 border rounded-md border-white p-4'>
                         <h3 className='mb-2 text-xl font-semibold text-white'>In my next role I'm looking for. . .</h3>
                         <div className='grid md:grid-cols-2'>
                             <div>
-                                <h3>Role: </h3>
-                                <h3>{roleLookingFor}</h3>
-                                <h3>Jobs with an experience level of:</h3>
-                                <h3>{jobLevel}</h3>
+                                <p className='text-white'>Role: </p>
+                                <p>{roleLookingFor}</p>
+                                <p className='text-white'>Jobs with an experience level of:</p>
+                                <p>{jobLevel}</p>
                             </div>
                             <div>   
-                                <h3>My work setting preference is: </h3>
-                                <h3>{workType}</h3>
-                                <h3>Ideal salary: {salary}</h3> 
-                                <h3>My dream company is: </h3>
-                                <h3>{idealCompany}</h3>
+                                <p className='text-white'>My work setting preference is: </p>
+                                <p>{workType}</p>
+                                <p className='text-white'>Ideal salary: ${salary}</p> 
+                                <p className='text-white'>My dream company is: </p>
+                                <p>{idealCompany}</p>
                             </div>
                         </div>
                     </div>
-                    <div className="">
-                        {jobDesc}
+                    <div className="m-4">
+                        <p className='text-white my-4 text-xl'>My user summary:</p>
+                        <p>{jobDesc}</p>
                     </div>
-                    <div className='md:col-start-2 md:col-span-2  border rounded-md border-sky-200 p-4'>
-                        <h3 className='mb-2 text-xl font-semibold text-white'>Work Experience</h3>
-                        <h3>My current or previous role: </h3>
-                        <h3>{previousRole}</h3>
-                        <h3>Years of experience: </h3>
-                        <h3>{overallExperience}</h3>
+                    <div className='md:col-start-2 md:col-span-2 m-4 border rounded-md border-white p-4'>
+                        <p className='mb-2 text-xl font-semibold text-white'>Work Experience</p>
+                        <p className='text-white'>My current or previous role: </p>
+                        <p>{previousRole}</p>
+                        <p className='text-white'>Years of experience: </p>
+                        <p>{overallExperience} year(s)</p>
                     </div>
-                <div className='md:col-start-2 md:col-span-2 border rounded-md border-sky-200 p-4 '>
+                <div className='md:col-start-2 md:col-span-2 m-4 border rounded-md border-white p-4 '>
                     <h3 className='mb-2 text-xl font-semibold text-white'>Skills</h3>
                     {!editSkills 
                      && skills && skills.map((skill) => {
                         return (
-                            <ul key={skill._id} className='space-y-1 text-white list-disc list-inside m-2'>
-                                <li className='text-lg'>{skill.skillName} - {skill.years} year(s)</li>
-                                <AiOutlineCloseCircle 
+                            <ul key={skill._id} className='space-y-1 list-disc list-inside m-2'>
+                                <li className='text-lg'>{skill.skillName} - {skill.years} year(s)
+                                    <AiOutlineCloseCircle 
                                     className=' text-white hover:text-red-600 float-right'
                                     onClick={() => removeSkill(skill._id)}
-                                />
+                                    />
+                                </li>
+                                
                             </ul>
                         )
                     })}
                 
-                    {!editSkills && <button className='btn' onClick={()=> setEditSkills(true)}>Add skills</button>}
+                    {!editSkills && <button className='btn btn-sm' onClick={()=> setEditSkills(true)}>Add skills</button>}
                     <div>
                         {editSkills && <EditSkills toggleRender={toggleRender} setToggleRender={setToggleRender} setEditSkills={setEditSkills}/> }
                     </div>
