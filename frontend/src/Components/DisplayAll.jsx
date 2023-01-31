@@ -6,6 +6,7 @@ import AddJob from '../UI/AddJob';
 const URL = process.env.REACT_APP_BASEURL;
 const APP_URL = `${URL}/applications/`;
 
+const tableArr = ['Date Submitted', 'Job Role', 'Company', 'Technologies Used', 'Application Status', 'Edit', 'Delete']
 export const DisplayAll = ({ toggleRender, setToggleRender}) => {
   const [appsData, setAppsData] = useState([]);
  
@@ -98,27 +99,11 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
             <table className='min-w-full divide-y divide-gray-600 table-fixed lg:table-auto md:table-auto sm:table-auto'>
             <thead className='bg-gray-100 dark:bg-gray-700'>
               <tr>
-                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                  Date Submitted
-                </th>
-                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                  Job Role
-                </th>
-                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                  Company
-                </th>
-                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                  Technologies Used
-                </th>
-                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                  Progress
-                </th>
-                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                  Edit
-                </th>
-                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                  Delete
-                </th>
+                {tableArr.map((tableHeading) =>  (
+                  <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                    {tableHeading}
+                  </th>
+                ))}
               </tr>
             </thead>
             {appsData.map((app) => renderContent(app))}

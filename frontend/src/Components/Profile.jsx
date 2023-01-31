@@ -15,7 +15,6 @@ const Profile = () => {
     const [toggleRender, setToggleRender] = useState(false);
     const { isLoggedIn, token } = useAuth();
     const navigate = useNavigate();
-    console.log(token);
 
     const getProfileData = async () => {
         const response = await fetch(APP_URL+ token.id, {
@@ -43,7 +42,6 @@ const Profile = () => {
             method: 'DELETE',
           });
           const data = response.json(); 
-          console.log(data);
           setToggleRender(!toggleRender)   
           return data
         } catch (error) {
@@ -68,16 +66,21 @@ const Profile = () => {
                     
                     <div className='md:col-span-2  border rounded-md border-sky-200 p-4'>
                         <h3 className='mb-2 text-xl font-semibold text-white'>In my next role I'm looking for. . .</h3>
-                        <h3>Role: </h3>
-                        <h3>{roleLookingFor}</h3>
-                        <h3>My work setting preference is: </h3>
-                        <h3>{workType}</h3>
-                        <h3>Ideal salary:</h3>
-                        <h3>{salary}</h3>
-                        <h3>Jobs with an experience level of:</h3>
-                        <h3>{jobLevel}</h3>
-                        <h3>My dream company is: </h3>
-                        <h3>{idealCompany}</h3>
+                        <div className='grid md:grid-cols-2'>
+                            <div>
+                                <h3>Role: </h3>
+                                <h3>{roleLookingFor}</h3>
+                                <h3>Jobs with an experience level of:</h3>
+                                <h3>{jobLevel}</h3>
+                            </div>
+                            <div>   
+                                <h3>My work setting preference is: </h3>
+                                <h3>{workType}</h3>
+                                <h3>Ideal salary: {salary}</h3> 
+                                <h3>My dream company is: </h3>
+                                <h3>{idealCompany}</h3>
+                            </div>
+                        </div>
                     </div>
                     <div className="">
                         {jobDesc}
@@ -88,7 +91,6 @@ const Profile = () => {
                         <h3>{previousRole}</h3>
                         <h3>Years of experience: </h3>
                         <h3>{overallExperience}</h3>
-
                     </div>
                 <div className='md:col-start-2 md:col-span-2 border rounded-md border-sky-200 p-4 '>
                     <h3 className='mb-2 text-xl font-semibold text-white'>Skills</h3>
