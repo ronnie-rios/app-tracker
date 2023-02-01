@@ -7,6 +7,7 @@ import Signup from './UI/Signup';
 import { AuthProvider } from './store/authContext';
 import Profile from './Components/Profile';
 import EditQuestions from './Components/EditQuestions';
+import Footer from './UI/Footer';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/:id' element={<SingleApp />} />
       </Routes>
     </Router>
+      <Footer />
     </AuthProvider>
     </>
   );
