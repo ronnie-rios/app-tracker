@@ -1,8 +1,11 @@
 import React from 'react'
+import JobCard from '../Components/JobCard'
 
 const AllJobs = () => {
   return (
-    <div>AllJobs</div>
+    <div >
+      <JobCard />
+    </div>
   )
 }
 
