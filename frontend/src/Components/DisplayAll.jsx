@@ -10,13 +10,13 @@ const tableArr = ['Date Submitted', 'Job Role', 'Company', 'Technologies Used', 
 export const DisplayAll = ({ toggleRender, setToggleRender}) => {
   const [appsData, setAppsData] = useState([]);
  
-  const { isLoggedIn, token } = useAuth();
+  const { isLoggedIn, userData } = useAuth();
   const navigate = useNavigate(); 
-  
+  console.log(userData)
   const getAllApps = async () => {
     const response = await fetch(APP_URL, {
       headers:{
-        'Authorization': `bearer ${token.token}`
+        'Authorization': `bearer ${userData.token}`
       }, 
       method: 'GET',
     })
@@ -28,7 +28,7 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
       const response = await fetch(APP_URL + id, {
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `bearer ${token.token}`
+          'Authorization': `bearer ${userData.token}`
         },
         method: 'DELETE',
       });

@@ -6,7 +6,7 @@ const URL = process.env.REACT_APP_BASEURL;
 const APP_URL = `${URL}/applications/`;
 
 const SingleApp = () => {
-  const { token } = useAuth();
+  const { userObj } = useAuth();
 
   const [singleAppData, setSingleAppData] = useState([]);
   const [formData, setFormData] = useState({
@@ -22,7 +22,7 @@ const SingleApp = () => {
   const getSingleApp = async () => {
       const response = await fetch(APP_URL + id, {
         headers: { 
-          'Authorization': `bearer ${token.token}`
+          'Authorization': `bearer ${userObj.token}`
         },
         method: 'GET',
       });
@@ -38,7 +38,7 @@ const SingleApp = () => {
       const response = await fetch(APP_URL + id, {
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `bearer ${token.token}`
+          'Authorization': `bearer ${userObj.token}`
         },
         method: 'PUT',
         body: JSON.stringify(formData)

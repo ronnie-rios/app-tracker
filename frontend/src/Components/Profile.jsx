@@ -13,13 +13,13 @@ const Profile = () => {
     const [profileData, setProfileData] = useState([]);
     const [editSkills, setEditSkills] = useState(false);
     const [toggleRender, setToggleRender] = useState(false);
-    const { isLoggedIn, token } = useAuth();
+    const { isLoggedIn, userData } = useAuth();
     const navigate = useNavigate();
-
+    console.log(userData);
     const getProfileData = async () => {
-        const response = await fetch(APP_URL+ token.id, {
+        const response = await fetch(APP_URL+ userData.id, {
             headers:{
-            'Authorization': `bearer ${token.token}`
+            'Authorization': `bearer ${userData.token}`
             }, 
             method: 'GET',
         })
@@ -34,10 +34,10 @@ const Profile = () => {
    
     const removeSkill = async (id) => {
         try {
-          const response = await fetch(SKILL_URL + token.id+'/skills/'+ id, {
+          const response = await fetch(SKILL_URL + userData.id+'/skills/'+ id, {
             headers: { 
               'Content-Type': 'application/json',
-              'Authorization': `bearer ${token.token}`
+              'Authorization': `bearer ${userData.token}`
             },
             method: 'DELETE',
           });
@@ -61,7 +61,7 @@ const Profile = () => {
                     <div className='card col-span-1 m-4'>
                         <h1 className='text-white text-2xl my-4'>Profile</h1>
                         <p className='card-title text-lg my-4'>Welcome {username}</p>
-                        <button className='btn btn-sm btn-outline max-w-sm' onClick={()=>navigate(`/profile/:${token.id}`)}>Edit Profile</button>
+                        <button className='btn btn-sm btn-outline max-w-sm' onClick={()=>navigate(`/profile/:${userData.id}`)}>Edit Profile</button>
                     </div>
                     
                     <div className='md:col-start-2 md:col-span-2 m-4 border rounded-md border-white p-4'>

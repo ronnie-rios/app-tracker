@@ -39,7 +39,7 @@ const JobCard = () => {
           <h2 className="card-title">{job.job_title}</h2>
           <p>Company: {job.job_description}</p>
           <p>Description: {job.job_description}</p>
-          <div className="card-actions p-4 justify-center">
+          <div className="card-actions p-2 justify-center">
             <button className="btn btn-sm btn-primary">{job.job_apply_link}</button>
             <button className="btn btn-sm btn-ghost">Apply add to tracker?</button>
           </div>
