@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useJobs } from '../store/jobContext';
 import { useAuth } from '../store/authContext';
 
@@ -5,11 +6,11 @@ const URL = process.env.REACT_APP_BASEURL;
 const APP_URL = `${URL}/applications`
 
 const JobCard = () => {
+  const [buttonDetails, setButtonDetails] =useState(false);
   const { userData } = useAuth();
-  const { jobData } = useJobs();
+  const { jobData, setJobData } = useJobs();
 
   const postTracker = async (job) => {
-    //formData.owner = userData.id
     const today = new Date();
     const postedJob = {
       jobRole: job.jobRole,
@@ -17,21 +18,28 @@ const JobCard = () => {
       owner: userData.id,
       dateSubmitted: today
     }
-    try {
-      const response = await fetch(APP_URL, {
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `bearer ${userData.token}`
-        },
-        method: 'POST',
-        body: JSON.stringify(postedJob)
-      });
-    
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      return error
-    }
+      try {
+        const response = await fetch(APP_URL, {
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `bearer ${userData.token}`
+          },
+          method: 'POST',
+          body: JSON.stringify(postedJob)
+        });
+        const data = await response.json();
+        setTimeout(deletedPostedJob(postedJob.jobRole), 10000);
+        setButtonDetails(false)
+        return data;
+      } catch (error) {
+        return error
+      }
+  }
+
+  const deletedPostedJob = (postedJob) => {
+    setJobData(jobData.filter((item) => { 
+      return item.jobRole !== postedJob
+    }))
   }
 
   return (
@@ -44,10 +52,16 @@ const JobCard = () => {
           <p>Description: {job.job_description}</p>
           <div className="card-actions p-2 justify-center">
             <button className="btn btn-sm btn-primary">{job.job_apply_link}</button>
-            <button onClick={()=>postTracker(job)} className="btn btn-sm btn-ghost">Apply add to tracker?</button>
+            {buttonDetails === true ? '' : <button onClick={()=>setButtonDetails(true)} className="btn btn-sm btn-ghost">Apply add to tracker?</button>}
+            {buttonDetails === true ?
+              <>
+                <button onClick={()=>postTracker(job)}>Yes, I applied</button>
+                <button onClick={()=> setButtonDetails(false)}>No I did not</button>
+              </> : ''
+             }
+          </div>
           </div>
         </div>
-      </div>
       ))}
     </>
   )
