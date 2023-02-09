@@ -1,8 +1,39 @@
 import { useJobs } from '../store/jobContext';
+import { useAuth } from '../store/authContext';
 
+const URL = process.env.REACT_APP_BASEURL;
+const APP_URL = `${URL}/applications`
 
 const JobCard = () => {
-  const { jobData } = useJobs()
+  const { userData } = useAuth();
+  const { jobData } = useJobs();
+
+  const postTracker = async (job) => {
+    //formData.owner = userData.id
+    const today = new Date();
+    const postedJob = {
+      jobRole: job.jobRole,
+      company: job.company,
+      owner: userData.id,
+      dateSubmitted: today
+    }
+    try {
+      const response = await fetch(APP_URL, {
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `bearer ${userData.token}`
+        },
+        method: 'POST',
+        body: JSON.stringify(postedJob)
+      });
+    
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return error
+    }
+  }
+
   return (
     <>
       {jobData && jobData.map((job) => (
@@ -13,7 +44,7 @@ const JobCard = () => {
           <p>Description: {job.job_description}</p>
           <div className="card-actions p-2 justify-center">
             <button className="btn btn-sm btn-primary">{job.job_apply_link}</button>
-            <button className="btn btn-sm btn-ghost">Apply add to tracker?</button>
+            <button onClick={()=>postTracker(job)} className="btn btn-sm btn-ghost">Apply add to tracker?</button>
           </div>
         </div>
       </div>

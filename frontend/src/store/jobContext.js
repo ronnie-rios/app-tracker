@@ -5,8 +5,8 @@ const JobContext = createContext({
 });
 
 function JobProvider({ children }) {
-    const [jobData, setJobData] = useState([])
-
+    const [jobData, setJobData] = useState([]);
+    
     return (
         <JobContext.Provider value = 
             {{

@@ -12,7 +12,7 @@ export const DisplayAll = ({ toggleRender, setToggleRender}) => {
  
   const { isLoggedIn, userData } = useAuth();
   const navigate = useNavigate(); 
-  console.log(userData)
+ 
   const getAllApps = async () => {
     const response = await fetch(APP_URL, {
       headers:{
