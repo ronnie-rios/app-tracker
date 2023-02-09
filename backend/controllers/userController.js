@@ -54,7 +54,7 @@ router.post('/login', async (req, res) => {
             foundUser.token = token
             foundUser.save()
             
-            res.json({ id: foundUser._id, token: foundUser.token, username: foundUser.username, jobDesc: foundUser.jobDesc, roleLookingFor: foundUser.roleLookingFor, overallExperience: foundUser.overallExperience, skills: foundUser.skills }) //send the whole user obj
+            res.json({ id: foundUser._id, token: foundUser.token, username: foundUser.username, jobDesc: foundUser.jobDesc, roleLookingFor: foundUser.roleLookingFor, overallExperience: foundUser.overallExperience, skills: foundUser.skills, location: foundUser.location}) //send the whole user obj
         } else {
             return res.status(400).json({ error: 'invalid pw'})
         }

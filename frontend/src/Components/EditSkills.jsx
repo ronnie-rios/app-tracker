@@ -12,7 +12,7 @@ const EditSkills = ({ toggleRender, setToggleRender, setEditSkills }) => {
   });
 
   const [payload, setPayload] = useState([]);
-  const { userObj } = useAuth(); 
+  const { userData } = useAuth(); 
 
   const formHandler = (e) => {
     const name = e.target.name;
@@ -26,10 +26,10 @@ const EditSkills = ({ toggleRender, setToggleRender, setEditSkills }) => {
     console.log('edit data fnc from edit skills component')
     e.preventDefault();
     try {
-      const response = await fetch(APP_URL + userObj.id, {
+      const response = await fetch(APP_URL + userData.id, {
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `bearer ${userObj.token}`
+          'Authorization': `bearer ${userData.token}`
         },
         method: 'PUT',
         body: JSON.stringify(payload)

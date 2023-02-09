@@ -32,6 +32,7 @@ const userSchema = new mongoose.Schema({
     jobLevel: String,
     workType: String,
     workCitizen: String, //work in US 
+    location: String
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

@@ -15,7 +15,7 @@ const Profile = () => {
     const [toggleRender, setToggleRender] = useState(false);
     const { isLoggedIn, userData } = useAuth();
     const navigate = useNavigate();
-    console.log(userData);
+
     const getProfileData = async () => {
         const response = await fetch(APP_URL+ userData.id, {
             headers:{
@@ -30,7 +30,7 @@ const Profile = () => {
         getProfileData()
     },[toggleRender]);
    
-    const { username, roleLookingFor, idealCompany, jobLevel, previousRole, workType, jobDesc, salary, overallExperience, skills } = profileData
+    const { username, roleLookingFor, location, idealCompany, jobLevel, previousRole, workType, jobDesc, salary, overallExperience, skills } = profileData
    
     const removeSkill = async (id) => {
         try {
@@ -61,6 +61,7 @@ const Profile = () => {
                     <div className='card col-span-1 m-4'>
                         <h1 className='text-white text-2xl my-4'>Profile</h1>
                         <p className='card-title text-lg my-4'>Welcome {username}</p>
+                        <p className='card-title text-sm my-4'>Currently located in {location}.</p>
                         <button className='btn btn-sm btn-outline max-w-sm' onClick={()=>navigate(`/profile/:${userData.id}`)}>Edit Profile</button>
                     </div>
                     

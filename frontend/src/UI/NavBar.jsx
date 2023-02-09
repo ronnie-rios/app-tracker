@@ -6,7 +6,7 @@ const URL = process.env.REACT_APP_BASEURL;
 const USER_URL = `${URL}/user/logout`;
 
 const NavBar = () => {
-  const { isLoggedIn, logout, token } = useAuth();
+  const { isLoggedIn, logout, userData } = useAuth();
 
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const NavBar = () => {
       const response = await fetch(USER_URL, {
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `bearer: ${token.token}`
+          'Authorization': `bearer: ${userData.token}`
         },
         method: 'DELETE',
       });

@@ -17,7 +17,7 @@ const EditQuestions = () => {
     salary: 0,
     workCitizen: ''
   });
-  const { token } = useAuth();
+  const { userData } = useAuth();
   const navigate = useNavigate(); 
 
   const formHandler = (e) => {
@@ -36,10 +36,10 @@ const EditQuestions = () => {
 
 const postData = async () => {
   try {
-    const response = await fetch(APP_URL + token.id, {
+    const response = await fetch(APP_URL + userData.id, {
       headers: { 
         'Content-Type': 'application/json',
-        'Authorization': `bearer ${token.token}`
+        'Authorization': `bearer ${userData.token}`
       },
       method: 'PUT',
       body: JSON.stringify(formData)
@@ -94,6 +94,16 @@ const postData = async () => {
               name='roleLookingFor'
               required
               placeholder='ex: frontend engineer'
+            />
+          </div>
+          <div className="mb-4">
+            <label className='block text-lg text-white mb-2'>Enter your location:</label>
+            <input
+              className='shadow appearance-none border rounded w-full py-2 px-3 bg-white text-black leading-tight focus:outline-none focus:shadow-outline' 
+              type='text'
+              name='location'
+              required
+              placeholder='ex: Texas, USA'
             />
           </div>
           <div className="mb-4">
