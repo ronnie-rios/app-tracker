@@ -9,11 +9,13 @@ import Profile from './Components/Profile';
 import EditQuestions from './Components/EditQuestions';
 import Footer from './UI/Footer';
 import RecJobs from './Pages/RecJobs';
+import { JobProvider } from './store/jobContext';
 
 function App() {
   return (
     <>
     <AuthProvider>
+    <JobProvider>
     <Router>
       <NavBar />
       <Routes>
@@ -27,6 +29,7 @@ function App() {
       </Routes>
     </Router>
       <Footer />
+    </JobProvider>
     </AuthProvider>
     </>
   );

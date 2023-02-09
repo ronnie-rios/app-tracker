@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import JobCard from '../Components/JobCard'
 import { useAuth } from '../store/authContext';
+import { useJobs } from '../store/jobContext';
 
 const RecJobs = () => {
   const [recJobs, setRecJobs] = useState([]);
-  const { isLoggedIn, userData } = useAuth();
+  const { userData } = useAuth();
+  const { jobData, setJobData } = useJobs();
   
   const getJobData = async () => {
     try {
@@ -16,7 +18,7 @@ const RecJobs = () => {
         body: JSON.stringify(userData) //destructure?
       });
       const data = await response.json();
-      setRecJobs(data)
+      setJobData(data)
     } catch (error) {
       console.log(error)
     }
@@ -28,9 +30,10 @@ const RecJobs = () => {
   return (
     <section className='mx-auto h-screen p-20'>
       <h1 className='text-2xl pb-4 '>Recommended Jobs</h1>
-      <button className='btn btn-sm btn-primary' onClick={buttonHandler}>Find jobs</button>
+      {jobData.length === 0 ? <button className='btn btn-sm btn-primary' onClick={buttonHandler}>Find jobs</button> : ''}
+      
       <div className=' grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2'>
-        <JobCard recJobs={recJobs}/>
+        <JobCard />
       </div>
     </section>
   )

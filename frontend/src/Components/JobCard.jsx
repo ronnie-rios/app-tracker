@@ -1,11 +1,11 @@
-import React from 'react'
+import { useJobs } from '../store/jobContext';
 
 
-const JobCard = ({ recJobs }) => {
-  console.log(recJobs[0]);
+const JobCard = () => {
+  const { jobData } = useJobs()
   return (
     <>
-      {recJobs && recJobs.map((job) => (
+      {jobData && jobData.map((job) => (
         <div className="p-4 rounded-lg w-96 bg-neutral text-neutral-content" id={job.job_id}>
         <div className="items-left text-left m-4">
           <h2 className="card-title">{job.jobRole}</h2>
