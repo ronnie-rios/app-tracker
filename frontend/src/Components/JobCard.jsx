@@ -46,20 +46,20 @@ const JobCard = () => {
     <>
       {jobData && jobData.map((job) => (
         <div className="p-4 rounded-lg w-96 bg-neutral text-neutral-content" id={job.job_id}>
-        <div className="items-left text-left m-4">
-          <h2 className="card-title">{job.jobRole}</h2>
-          <p>Company: {job.company}</p>
-          <p>Description: {job.job_description}</p>
-          <div className="card-actions p-2 justify-center">
-            <button className="btn btn-sm btn-primary">{job.job_apply_link}</button>
-            {buttonDetails === true ? '' : <button onClick={()=>setButtonDetails(true)} className="btn btn-sm btn-ghost">Apply add to tracker?</button>}
-            {buttonDetails === true ?
-              <>
-                <button onClick={()=>postTracker(job)}>Yes, I applied</button>
-                <button onClick={()=> setButtonDetails(false)}>No I did not</button>
-              </> : ''
-             }
-          </div>
+          <div className="items-left text-left m-4">
+            <h2 className="card-title">{job.jobRole}</h2>
+            <p className='py-2'>Company: {job.company}</p>
+            <p className='py-2'>Description: {job.job_description}</p>
+            <div className="card-actions p-2 justify-center">
+              <button className="btn btn-sm btn-primary">{job.job_apply_link}</button>
+              {buttonDetails === true ? '' : <button onClick={()=>setButtonDetails(true)} className="btn btn-sm btn-ghost">Apply add to tracker?</button>}
+              {buttonDetails === true ?
+                <>
+                  <button onClick={()=>postTracker(job)}>Yes, I applied</button>
+                  <button onClick={()=> setButtonDetails(false)}>No I did not</button>
+                </> : ''
+              }
+            </div>
           </div>
         </div>
       ))}

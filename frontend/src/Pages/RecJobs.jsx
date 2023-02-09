@@ -31,7 +31,7 @@ const RecJobs = () => {
 
   }
   return (
-    <section className='mx-auto h-screen p-20'>
+    <section className='mx-auto h-auto p-20 '>
       <h1 className='text-2xl pb-4 '>Recommended Jobs</h1>
       {jobData.length === 0 ? <button className='btn btn-sm btn-primary' onClick={buttonHandler}>Find jobs</button> : ''}
       
