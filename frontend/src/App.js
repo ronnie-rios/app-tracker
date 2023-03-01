@@ -10,6 +10,7 @@ import EditQuestions from './Components/EditQuestions';
 import Footer from './UI/Footer';
 import RecJobs from './Pages/RecJobs';
 import { JobProvider } from './store/jobContext';
+import Landing from './Pages/Landing';
 
 function App() {
   return (
@@ -19,12 +20,13 @@ function App() {
     <Router>
       <NavBar />
       <Routes>
-        <Route path='/' element={<About />} />
+        <Route path='/' element={<Landing />} />
+        <Route path='/login' element={<About />} />
         <Route path='/home' element={<HomePage />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/profile/:id' element={<EditQuestions />} />
+        {/* <Route path='/profile' element={<Profile />} />
+        <Route path='/profile/:id' element={<EditQuestions />} /> */}
         <Route path='/signup' element={<Signup />} />
-        <Route path='/jobrec' element={<RecJobs />} />
+        {/* <Route path='/jobrec' element={<RecJobs />} /> */}
         <Route path='/:id' element={<SingleApp />} />
       </Routes>
     </Router>

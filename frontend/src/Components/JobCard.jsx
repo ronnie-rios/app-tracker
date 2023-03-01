@@ -9,7 +9,7 @@ const JobCard = () => {
   const [buttonDetails, setButtonDetails] =useState(false);
   const { userData } = useAuth();
   const { jobData, setJobData } = useJobs();
-
+  console.log(jobData);
   const postTracker = async (job) => {
     const today = new Date();
     const postedJob = {
