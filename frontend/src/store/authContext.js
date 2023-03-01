@@ -2,23 +2,23 @@ import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext({
     isLoggedIn: false,
-    token: null,
-    login: (token) => {},
+    userObj: null,
+    login: (userObj) => {},
     logout: () => {}
 });
 
 function AuthProvider({ children }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [token, setToken] = useState(null);
+    const [userData, setUserData] = useState(null);
     
     //login token
-    function login(newToken) {
-        setToken(newToken)
+    function login(user) {
+        setUserData(user)
         setIsLoggedIn(true)
     }
     //clear token
     function logout() {
-        setToken(null)
+        setUserData(null)
         setIsLoggedIn(false)
     }
 
@@ -26,7 +26,7 @@ function AuthProvider({ children }) {
         <AuthContext.Provider value = 
         {{
             isLoggedIn: isLoggedIn,
-            token,
+            userData,
             login,
             logout
         }}>

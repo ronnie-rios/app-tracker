@@ -6,7 +6,7 @@ const APP_URL = `${URL}/applications`
 
 export const PostApp = ({ toggleRender, setToggleRender }) => {
   const [formData, setFormData] = useState({});
-  const { token } = useAuth();
+  const { userData } = useAuth();
 
   const formHandler = (e) => {
     const name = e.target.name;
@@ -22,12 +22,12 @@ export const PostApp = ({ toggleRender, setToggleRender }) => {
   }
   
   const postData = async () => {
-    formData.owner = token.id
+    formData.owner = userData.id
     try {
       const response = await fetch(APP_URL, {
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `bearer ${token.token}`
+          'Authorization': `bearer ${userData.token}`
         },
         method: 'POST',
         body: JSON.stringify(formData)
