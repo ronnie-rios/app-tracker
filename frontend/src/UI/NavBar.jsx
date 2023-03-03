@@ -39,7 +39,7 @@ const NavBar = () => {
         {/* {!isLoggedIn ? '' : <Link to='/profile'><li className='hover:text-white px-6'>Profile</li></Link>}
         {!isLoggedIn ? '' : <Link to='/jobrec'><li className='hover:text-white px-6'>Recommended Jobs</li></Link>} */}
         {isLoggedIn ? '' :<Link to='/signup'><li className='hover:text-white px-6 text-lg'>Sign Up</li></Link>}
-        {isLoggedIn ? <button onClick={logoutFunc}className='hover:text-white px-6 text-kg'>Logout</button> : <button onClick={()=> navigate('/login')}className='hover:text-white px-6'>Log In</button>}
+        {isLoggedIn ? <button onClick={logoutFunc}className='hover:text-white px-6 text-lg'>Logout</button> : <button onClick={()=> navigate('/login')}className='hover:text-white px-6'>Log In</button>}
       </ul>
     </div>
   </nav>
